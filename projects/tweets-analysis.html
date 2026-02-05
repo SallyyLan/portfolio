@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Tweets Analysis - NLP | Sally Lan</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .project-hero {
+            background: linear-gradient(135deg, #2563eb 0%, #06b6d4 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+        
+        .project-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .project-hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+        
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            margin-bottom: 2rem;
+        }
+        
+        .project-section {
+            padding: 4rem 0;
+        }
+        
+        .project-section:nth-child(even) {
+            background: var(--surface);
+        }
+        
+        .section-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--text-primary);
+        }
+        
+        .section-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+        
+        .content-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+        }
+        
+        .highlight-box {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-md);
+            border-left: 6px solid var(--primary-color);
+        }
+        
+        .tech-stack-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .tech-item {
+            background: white;
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .tech-item i {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .visualization-container {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-md);
+            margin: 2rem 0;
+        }
+        
+        .chart-container {
+            height: 400px;
+            margin: 2rem 0;
+        }
+        
+        .insights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .insight-card {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .insight-card h4 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .recommendations-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .recommendations-list li {
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: start;
+            gap: 1rem;
+        }
+        
+        .recommendations-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .recommendations-list i {
+            color: var(--success);
+            margin-top: 0.25rem;
+        }
+        
+        .contact-section {
+            background: var(--gradient-primary);
+            color: white;
+            text-align: center;
+        }
+        
+        .contact-section .section-title {
+            color: white;
+        }
+        
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .contact-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            backdrop-filter: blur(10px);
+        }
+        
+        .contact-item i {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .engagement-chart {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .engagement-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-md);
+            text-align: center;
+        }
+        
+        .engagement-card.peak-time {
+            border-left: 4px solid var(--success);
+        }
+        
+        .engagement-card.moderate-time {
+            border-left: 4px solid var(--warning);
+        }
+        
+        .engagement-card.low-time {
+            border-left: 4px solid var(--error);
+        }
+        
+        .data-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-md);
+            text-align: center;
+        }
+        
+        .stat-card .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        @media (max-width: 768px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .project-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Project Hero -->
+    <section class="project-hero">
+        <div class="section-content">
+            <a href="../index.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i>
+                Back to Portfolio
+            </a>
+            <h1>Live Tweets Analysis - NLP</h1>
+            <p style="color: white;">Data-driven analysis of Twitter engagement patterns to optimize social media strategy and boost TV viewership during live race events</p>
+        </div>
+    </section>
+
+    <!-- Problem Statement -->
+    <section class="project-section">
+        <div class="section-content">
+            <h2 class="section-title">🤔 Why This Project?</h2>
+            <div class="content-grid">
+                <div>
+                    <h3 class="section-subtitle">Problem Statement</h3>
+                    <p class="content-text">
+                        Social media platforms, particularly Twitter, have become vital for real-time engagement during live sports events. The immediacy of Twitter allows fans to share opinions and interact, generating valuable data on public sentiment and interest.
+                    </p>
+                    <p class="content-text">
+                        However, there're some challenges in leveraging this data to:
+                    </p>
+                    <ul class="content-text">
+                        <li><strong>Maximize Online Engagement:</strong> Identify tweet characteristics that drive high interaction (likes, retweets, comments) during live broadcasts</li>
+                        <li><strong>Boost TV Viewership:</strong> Understand how tweet content correlates with TV viewership and whether it can predict viewership variations</li>
+                        <li><strong>Optimize Marketing Strategies:</strong> Develop data-driven approaches to enhance brand visibility and fan experience during race events</li>
+                    </ul>
+                </div>
+                <div class="highlight-box">
+                    <h4>Objectives & Goals</h4>
+                    <ul>
+                        <li>Identify tweet features (sentiment, topics, timing) that drive high online engagement during Supercars live broadcasts</li>
+                        <li>Determine tweet content characteristics associated with increased TV viewership and assess their predictive power</li>
+                        <li>Provide data-driven recommendations to enhance social media strategies and fan engagement</li>
+                        <li>Build predictive models to forecast engagement and viewership patterns</li>
+                        <li>Optimize tweet timing and content for maximum impact during race events</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Data Description -->
+    <section class="project-section">
+        <div class="section-content">
+            <h2 class="section-title">📊 Data Description</h2>
+            <div class="content-grid">
+                <div>
+                    <h3 class="section-subtitle">Dataset Overview</h3>
+                    <p class="content-text">
+                        The analysis utilized two primary datasets integrated for comprehensive insights:
+                    </p>
+                    <ul class="content-text">
+                        <li><strong>Twitter Dataset:</strong> Tweet data from Supercars Championship events, including text content, timestamps, likes, retweets, and comments</li>
+                        <li><strong>TV Ratings Dataset:</strong> TV viewership data at 15-minute intervals, including viewer counts and broadcast channel details</li>
+                        <li><strong>Features:</strong> Tweet text, timestamps, engagement metrics, sentiment scores, topic IDs, viewer counts, and channel information</li>
+                        <li><strong>Preprocessing:</strong> Normalized text via tokenization, decapitalization, punctuation removal, and stop word elimination using NLTK</li>
+                        <li><strong>Feature Engineering:</strong> Created engagement_score, sentiment categories, topic modeling, and temporal features</li>
+                    </ul>
+                </div>
+                <div class="highlight-box">
+                    <h4>Data Preparation & Quality</h4>
+                    <ul>
+                        <li>Handled missing values and removed empty columns</li>
+                        <li>Converted timestamps to datetime format for alignment</li>
+                        <li>Aggregated tweet metrics into 15-minute intervals to align with TV ratings</li>
+                        <li>Created engagement_score by summing likes, retweets, and comments per interval</li>
+                        <li>Derived sentiment_score using VADER (-1 to +1) and sentiment categories</li>
+                        <li>Applied LDA topic modeling to categorize tweets into 5 topics</li>
+                        <li>Final dataset: Integrated Twitter and TV ratings with 80+ features</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="data-stats">
+                <div class="stat-card">
+                    <div class="stat-number">15K+</div>
+                    <div>Tweets Analyzed</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">15-min</div>
+                    <div>Time Intervals</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">5</div>
+                    <div>Topic Categories</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">80+</div>
+                    <div>Features Engineered</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Methodology -->
+    <section class="project-section">
+        <div class="section-content">
+            <h2 class="section-title">🔧 How I Built This</h2>
+            <div class="content-grid">
+                <div>
+                    <h3 class="section-subtitle">Analytics Approach</h3>
+                    <p class="content-text">
+                        The analysis followed a structured methodology to address the business questions:
+                    </p>
+                    <ul class="content-text">
+                        <li><strong>Exploratory Data Analysis (EDA):</strong> Visualized relationships between engagement, sentiment, tweet volume, and TV viewership</li>
+                        <li><strong>Feature Engineering:</strong> Created composite and contextual features to enhance model performance</li>
+                        <li><strong>Topic Modeling:</strong> Applied Latent Dirichlet Allocation (LDA) to categorize tweets into 5 topics</li>
+                        <li><strong>Sentiment Analysis:</strong> Quantified tweet emotional tone using VADER to explore impact on engagement</li>
+                        <li><strong>Forward Feature Selection:</strong> Identified predictive features using cross-validated R² scores</li>
+                        <li><strong>Predictive Modeling:</strong> Built regression models to quantify relationships and predict target variables</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="section-subtitle">Technologies & Methods</h3>
+                    <div class="tech-stack-grid">
+                        <div class="tech-item">
+                            <i class="fab fa-python"></i>
+                            <div>Python</div>
+                            <small>Core analysis</small>
+                        </div>
+                        <div class="tech-item">
+                            <i class="fas fa-brain"></i>
+                            <div>NLP</div>
+                            <small>Text processing</small>
+                        </div>
+                        <div class="tech-item">
+                            <i class="fas fa-heart"></i>
+                            <div>VADER</div>
+                            <small>Sentiment analysis</small>
+                        </div>
+                        <div class="tech-item">
+                            <i class="fas fa-tags"></i>
+                            <div>LDA</div>
+                            <small>Topic modeling</small>
+                        </div>
+                        <div class="tech-item">
+                            <i class="fas fa-database"></i>
+                            <div>Pandas & NLTK</div>
+                            <small>Data processing</small>
+                        </div>
+                        <div class="tech-item">
+                            <i class="fas fa-chart-line"></i>
+                            <div>LightGBM/XGBoost</div>
+                            <small>ML modeling</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Visualizations & Insights -->
+    <section class="project-section">
+        <div class="section-content">
+            <h2 class="section-title">📈 Visualizations & Insights</h2>
+            
+            <div class="visualization-container">
+                <h3 class="section-subtitle">Engagement Patterns Analysis</h3>
+                <div class="chart-container">
+                    <canvas id="engagementChart"></canvas>
+                </div>
+                <p class="content-text">
+                    The analysis revealed that engagement peaks between 10:00–14:00, with a maximum at 10:00–11:00, likely coinciding with race events. Tweets with slightly positive sentiment (0.2–0.4) achieve higher engagement, while extreme emotions underperform.
+                </p>
+            </div>
+
+            <div class="engagement-chart">
+                <div class="engagement-card peak-time">
+                    <h4>Peak Engagement Time</h4>
+                    <p><strong>10:00-14:00</strong></p>
+                    <p>Maximum engagement during race events</p>
+                </div>
+                <div class="engagement-card peak-time">
+                    <h4>TV Viewership Peak</h4>
+                    <p><strong>17:00-18:00</strong></p>
+                    <p>Optimal broadcast engagement time</p>
+                </div>
+                <div class="engagement-card moderate-time">
+                    <h4>Sentiment Sweet Spot</h4>
+                    <p><strong>0.2-0.4</strong></p>
+                    <p>Moderate positivity maximizes engagement</p>
+                </div>
+            </div>
+
+            <div class="insights-grid">
+                <div class="insight-card">
+                    <h4>Time Sensitivity</h4>
+                    <p>Engagement and viewership are time-dependent, with peaks at 10:00–11:00 and 17:00–18:00 respectively, tied to race schedules.</p>
+                </div>
+                <div class="insight-card">
+                    <h4>Sentiment Impact</h4>
+                    <p>Moderate positivity in tweets (0.2–0.4) maximizes engagement, while neutral or extreme sentiments yield lower interaction.</p>
+                </div>
+                <div class="insight-card">
+                    <h4>Event-Driven Spikes</h4>
+                    <p>High tweet volumes during major race moments correlate with both engagement and viewership spikes, reflecting synchronized audience attention.</p>
+                </div>
+                <div class="insight-card">
+                    <h4>Feature Importance</h4>
+                    <p>For engagement, number_of_player and event_tweet_total are key predictors; for viewership, event_tweet_total and hour are critical.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Business Recommendations -->
+    <section class="project-section">
+        <div class="section-content">
+            <h2 class="section-title">💡 Actionable Business Recommendations</h2>
+            <div class="content-grid">
+                <div>
+                    <h3 class="section-subtitle">Strategic Implementation</h3>
+                    <p class="content-text">
+                        Based on the comprehensive EDA and predictive modeling of Twitter engagement patterns and TV viewership correlations, here are key recommendations 
+                        to enhance social media strategy and audience engagement:
+                    </p>
+                </div>
+                <div>
+                    <ul class="recommendations-list">
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <strong>Optimize Tweet Timing</strong><br>
+                                Schedule tweets between 10:00–14:00 and 17:00–18:00 AEST, especially on Sundays, to align with peak engagement and viewership periods
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <strong>Craft Player-Centric Content</strong><br>
+                                Focus tweets on individual drivers (e.g., Chaz Mostert) to leverage their emotional appeal, as number_of_player strongly predicts engagement (r=0.69)
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <strong>Incorporate High-Impact Keywords</strong><br>
+                                Use hashtags like #Bathurst1000, #V8SC, and driver names in tweets, as identified by topic modeling, to boost engagement
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <strong>Localize Content by Channel</strong><br>
+                                Reference regional TV channels (e.g., ATN7 Sydney, HSV7 Melbourne) in tweets to align with viewership patterns, as tv_channel predicts viewership
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <strong>Combine Features for Impact</strong><br>
+                                Create tweets integrating driver mentions, high-impact hashtags, optimal timing, and channel references for maximum engagement and viewership
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <strong>Sustain Viewership Post-Peak</strong><br>
+                                Address mid-race viewership drop-off by posting driver interviews, behind-the-scenes content, or fan polls during lower-engagement periods (post-18:00)
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="project-section contact-section">
+        <div class="section-content">
+            <h2 class="section-title">💬 Let's Discuss This Project</h2>
+            <p style="color: white; font-size: 1.1rem; line-height: 1.8;">
+                Reach out to discuss my social media analytics and 'Predictive Modeling' work in detail!
+            </p>
+        </div>
+    </section>
+
+    <script src="../script.js"></script>
+    <script>
+        // Engagement Patterns Chart
+        const ctx = document.getElementById('engagementChart');
+        if (ctx) {
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['8:00', '9:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00'],
+                    datasets: [{
+                        label: 'Engagement Score',
+                        data: [20, 35, 85, 90, 75, 60, 45, 30, 40, 65, 80, 50],
+                        borderColor: 'rgba(59, 130, 246, 1)',
+                        backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                        tension: 0.4,
+                        fill: true
+                    }, {
+                        label: 'TV Viewers',
+                        data: [30, 40, 60, 70, 65, 55, 50, 45, 60, 85, 90, 70],
+                        borderColor: 'rgba(16, 185, 129, 1)',
+                        backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                        tension: 0.4,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top'
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Score/Viewers (Normalized)'
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Hour of Day'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html> 

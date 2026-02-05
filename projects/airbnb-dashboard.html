@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inside Airbnb Dashboard Analysis | Sally Lan</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .project-hero {
+            background: linear-gradient(135deg, #2563eb 0%, #06b6d4 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+        
+        .project-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .project-hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+        
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            margin-bottom: 2rem;
+        }
+        
+        .project-section {
+            padding: 4rem 0;
+        }
+        
+        .project-section:nth-child(even) {
+            background: var(--surface);
+        }
+        
+        .section-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--text-primary);
+        }
+        
+        .section-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+        
+        .content-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+        }
+        
+        .highlight-box {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-md);
+            border-left: 6px solid var(--primary-color);
+        }
+        
+        .tech-stack-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .tech-item {
+            background: white;
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .tech-item i {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .visualization-container {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-md);
+            margin: 2rem 0;
+        }
+        
+        .chart-container {
+            height: 400px;
+            margin: 2rem 0;
+        }
+        
+        .insights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .insight-card {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .insight-card h4 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .recommendations-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .recommendations-list li {
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: start;
+            gap: 1rem;
+        }
+        
+        .recommendations-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .recommendations-list i {
+            color: var(--success);
+            margin-top: 0.25rem;
+        }
+        
+        .contact-section {
+            background: var(--gradient-primary) !important;
+            color: white;
+            text-align: center;
+        }
+        
+        .contact-section .section-title {
+            color: white;
+        }
+        
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .contact-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            backdrop-filter: blur(10px);
+        }
+        
+        .contact-item i {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .city-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .city-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-md);
+            text-align: center;
+        }
+        
+        .city-card h4 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .data-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-md);
+            text-align: center;
+        }
+        
+        .stat-card .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        .comparison-image {
+            text-align: center;
+            margin: 2rem 0;
+        }
+        
+        .comparison-image img {
+            transition: transform 0.3s ease;
+        }
+        
+        .comparison-image img:hover {
+            transform: scale(1.02);
+        }
+        
+        @media (max-width: 768px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .project-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Project Hero -->
+    <section class="project-hero">
+        <div class="section-content">
+            <a href="../index.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i>
+                Back to Portfolio
+            </a>
+            <h1>Inside Airbnb Dashboard Redesign</h1>
+            <p style="color: white;">Redesign and optimization of the Inside Airbnb dashboard to enhance user experience and data exploration capabilities</p>
+        </div>
+    </section>
+
+    <!-- Problem Statement -->
+    <section class="project-section">
+        <div class="section-content">
+            <h2 class="section-title">🤔 Why This Project?</h2>
+            <div class="content-grid">
+                <div>
+                    <h3 class="section-subtitle">Problem Statement</h3>
+                    <p class="content-text">
+                        The current Inside Airbnb dashboard, which visualizes Airbnb property data for specific regions, faces several design and functionality challenges that hinder user experience and data exploration.
+                    </p>
+                    <ul class="content-text">
+                        <li><strong>Overuse of Vertical Space:</strong> The interactive map dominates the dashboard, occupying excessive vertical space, forcing other statistical sections into a vertical arrangement, violating principles of effective data comparison</li>
+                        <li><strong>Limited Filtering Options:</strong> The dashboard restricts data exploration to a single country at a time, limiting its utility for users seeking granular insights across states or cities</li>
+                        <li><strong>Weak Readability:</strong> Overly detailed descriptions and repetitive percentage breakdowns increase cognitive load and complicate data scanning, reducing clarity and user engagement</li>
+                    </ul>
+                </div>
+                <div class="highlight-box">
+                    <h4>Objectives & Goals</h4>
+                    <ul>
+                        <li>Redesign the dashboard layout to optimize space usage, reducing the map's dominance and enabling side-by-side data comparisons</li>
+                        <li><strong>Expand filtering options to include state- and city-level data</strong>, improving user exploration capabilities</li>
+                        <li>Enhance readability by simplifying descriptions, embedding them in tooltips, and reducing redundancy</li>
+                        <li>Create a more intuitive, accessible, and functional dashboard for stakeholders in the short-term rental market</li>
+                        <li>Implement interactive elements to improve user engagement and reduce cognitive load</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Data Description -->
+    <section class="project-section">
+        <div class="section-content">
+            <h2 class="section-title">📊 Data Description</h2>
+            <div class="content-grid">
+                <div>
+                    <h3 class="section-subtitle">Dataset Overview</h3>
+                    <p class="content-text">
+                        The dashboard leverages data sourced from the official Inside Airbnb website, focusing on Airbnb listings in three major Australian cities: Sydney, Melbourne, and Brisbane.
+                    </p>
+                    <ul class="content-text">
+                        <li><strong>Host IDs:</strong> Unique identifier for hosts, used to track listings per host</li>
+                        <li><strong>Room Type:</strong> Categorical data describing property type (entire home, private room)</li>
+                        <li><strong>Average Nights Booked:</strong> Numerical data indicating average booking duration per listing</li>
+                        <li><strong>Price per Night:</strong> Numerical data representing cost per night for each listing</li>
+                        <li><strong>Average Income:</strong> Numerical estimates of income generated by each listing</li>
+                        <li><strong>Licenses:</strong> Categorical details of licensing information for properties</li>
+                        <li><strong>Number of Short-Term Rentals:</strong> Numerical counts of total short-term rental listings</li>
+                    </ul>
+                </div>
+                <div class="highlight-box">
+                    <h4>Data Preparation & Quality</h4>
+                    <ul>
+                        <li>Data extracted from Inside Airbnb (https://insideairbnb.com/sydney) as of September 2024</li>
+                        <li>Cleaned missing or incomplete fields to ensure data integrity</li>
+                        <li>Standardized data types (numerical for price and income, categorical for room type and licenses)</li>
+                        <li>Aggregated data by city for consistent analysis across regions</li>
+                        <li>Limited to three cities and September 2024 data, restricting multi-state comparisons</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="data-stats">
+                <div class="stat-card">
+                    <div class="stat-number">3</div>
+                    <div>Major Cities</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">Sept 2024</div>
+                    <div>Data Period</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">Multiple</div>
+                    <div>Room Types</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">Interactive</div>
+                    <div>Dashboard</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Methodology -->
+    <section class="project-section">
+        <div class="section-content">
+            <h2 class="section-title">🔧 How I Built This</h2>
+            <div class="content-grid">
+                <div>
+                    <h3 class="section-subtitle">Analytics Approach</h3>
+                    <p class="content-text">
+                        The dashboard was developed through a structured process to address the identified challenges:
+                    </p>
+                    <ul class="content-text">
+                        <li><strong>Exploratory Data Analysis (EDA):</strong> Analyzed relationships between variables (price per night, average income, room type) to identify patterns and correlations</li>
+                        <li><strong>Layout Redesign:</strong> Reduced the map's size to balance space allocation and enable side-by-side comparisons of statistical sections</li>
+                        <li><strong>Feature Engineering:</strong> Created aggregated metrics (average price per city, booking trends) to support filtering and visualization</li>
+                        <li><strong>Interactive Elements:</strong> Implemented tooltips for descriptions and interactive graphs to enhance user engagement and reduce redundancy</li>
+                        <li><strong>Testing and Validation:</strong> Conducted extensive testing to ensure callback functions and interactive components worked seamlessly</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="section-subtitle">Technologies & Methods</h3>
+                    <div class="tech-stack-grid">
+                        <div class="tech-item">
+                            <i class="fab fa-python"></i>
+                            <div>Python</div>
+                            <small>Data processing</small>
+                        </div>
+                        <div class="tech-item">
+                            <i class="fab fa-js"></i>
+                            <div>JavaScript</div>
+                            <small>Interactive elements</small>
+                        </div>
+                        <div class="tech-item">
+                            <i class="fas fa-chart-line"></i>
+                            <div>Plotly/Dash</div>
+                            <small>Interactive visualizations</small>
+                        </div>
+                        <div class="tech-item">
+                            <i class="fas fa-database"></i>
+                            <div>Pandas/NumPy</div>
+                            <small>Data analysis</small>
+                        </div>
+                        <div class="tech-item">
+                            <i class="fas fa-code"></i>
+                            <div>HTML/CSS</div>
+                            <small>Layout & styling</small>
+                        </div>
+                        <div class="tech-item">
+                            <i class="fas fa-mouse-pointer"></i>
+                            <div>D3.js</div>
+                            <small>Enhanced interactivity</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Visualizations & Insights -->
+    <section class="project-section">
+        <div class="section-content">
+            <h2 class="section-title">📈 Dashboard Redesign Comparison</h2>
+            
+            <div class="visualization-container">
+                <h3 class="section-subtitle">Before: Original Inside Airbnb Dashboard</h3>
+                <div class="comparison-image">
+                    <img src="../airbnb-original.png" alt="Original Inside Airbnb Dashboard" style="width: 100%; max-width: 800px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+                </div>
+                <p class="content-text">
+                    <strong>Issues Identified:</strong> The original dashboard shows the map dominating vertical space, limited filtering options (only selected city), and detailed text descriptions that increase cognitive load. The layout forces statistical sections into vertical arrangement, making side-by-side comparisons difficult.
+                </p>
+            </div>
+
+            <div class="visualization-container">
+                <h3 class="section-subtitle">After: Redesigned Dashboard Layout</h3>
+                <div class="comparison-image">
+                    <img src="../airbnb-redesigned.png" alt="Redesigned Inside Airbnb Dashboard" style="width: 100%; max-width: 800px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+                </div>
+                <p class="content-text">
+                    <strong>Improvements Implemented:</strong> The redesigned dashboard increases the map size, enables detailed map exploration and side-by-side chart comparisons, and incorporates tooltips for descriptions to reduce visual clutter. The new layout allows for better data exploration and comparison capabilities.
+                </p>
+            </div>
+
+            <div class="visualization-container">
+                <h3 class="section-subtitle">Enhanced Data Visualizations</h3>
+                <div class="comparison-image">
+                    <img src="../airbnb-charts.png" alt="Enhanced Dashboard Charts" style="width: 100%; max-width: 800px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+                </div>
+                <p class="content-text">
+                    <strong>New Features:</strong> The redesigned dashboard includes improved room type distribution charts, estimated nights booked analysis, and enhanced filtering options. The layout now supports better data comparison and user interaction through simplified tooltips and interactive elements.
+                </p>
+            </div>
+
+            <div class="visualization-container">
+                <h3 class="section-subtitle">Advanced Analytics Integration</h3>
+                <div class="comparison-image">
+                    <img src="../airbnb-analytics.png" alt="Advanced Analytics Dashboard" style="width: 100%; max-width: 800px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+                </div>
+                <p class="content-text">
+                    <strong>Analytics Enhancements:</strong> The final redesign incorporates advanced analytics including short-term rental minimum nights analysis and host property distribution. The dashboard now provides comprehensive insights while maintaining clean, accessible design principles.
+                </p>
+            </div>
+
+            <div class="city-stats">
+                <div class="city-card">
+                    <h4>Layout Optimization</h4>
+                    <p><strong>Map Size:</strong> Increased the map size to 50% of the dashboard</p>
+                    <p><strong>Side-by-Side:</strong> Enabled detailed map exploration and side-by-side chart comparisons</p>
+                </div>
+                <div class="city-card">
+                    <h4>User Experience</h4>
+                    <p><strong>Navigation:</strong> Simplified tooltips and interactive elements</p>
+                    <p><strong>Accessibility:</strong> Enhanced readability and data comprehension</p>
+                </div>
+                <div class="city-card">
+                    <h4>Data Exploration</h4>
+                    <p><strong>Filtering:</strong> Multi-level options</p>
+                    <p><strong>Interactivity:</strong> Enhanced hover effects</p>
+                    <p><strong>Insights:</strong> Deeper analytics</p>
+                </div>
+            </div>
+
+            <div class="insights-grid">
+                <div class="insight-card">
+                    <h4>Space Utilization</h4>
+                    <p>The redesigned dashboard enables side-by-side data comparisons, following effective data visualization principles.</p>
+                </div>
+                <div class="insight-card">
+                    <h4>User Engagement</h4>
+                    <p>Simplified tooltips and interactive elements reduce cognitive load, improving user engagement and data comprehension across different stakeholder groups.</p>
+                </div>
+                <div class="insight-card">
+                    <h4>Data Accessibility</h4>
+                    <p>Enhanced filtering options and clear visual hierarchy make the dashboard more accessible to hosts, researchers, and policymakers seeking insights into the short-term rental market.</p>
+                </div>
+                <div class="insight-card">
+                    <h4>Analytical Depth</h4>
+                    <p>The new layout supports deeper analytics including occupancy patterns, host distribution analysis, and regulatory compliance insights through improved data visualization techniques.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Contact Section -->
+    <section class="project-section contact-section">
+        <div class="section-content">
+            <h2 class="section-title">💬 Let's Discuss This Project</h2>
+            <p style="color: white; font-size: 1.1rem; line-height: 1.8;">
+                Reach out to discuss my dashboard optimization and data visualization work in detail!
+            </p>
+        </div>
+    </section>
+
+    <script src="../script.js"></script>
+</body>
+</html> 

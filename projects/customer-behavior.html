@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UNICEF Australia Direct Mail Optimization | Sally Lan</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .project-hero {
+            background: linear-gradient(135deg, #2563eb 0%, #06b6d4 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+        
+        .project-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .project-hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+        
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            margin-bottom: 2rem;
+        }
+        
+        .project-section {
+            padding: 4rem 0;
+        }
+        
+        .project-section:nth-child(even) {
+            background: var(--surface);
+        }
+        
+        .section-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--text-primary);
+        }
+        
+        .section-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+        
+        .content-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+        }
+        
+        .highlight-box {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-md);
+            border-left: 6px solid var(--primary-color);
+        }
+        
+        .tech-stack-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .tech-item {
+            background: white;
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .tech-item i {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .visualization-container {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-md);
+            margin: 2rem 0;
+        }
+        
+        .chart-container {
+            height: 400px;
+            margin: 2rem 0;
+        }
+        
+        .insights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .insight-card {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .insight-card h4 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .recommendations-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .recommendations-list li {
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: start;
+            gap: 1rem;
+        }
+        
+        .recommendations-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .recommendations-list i {
+            color: var(--success);
+            margin-top: 0.25rem;
+        }
+        
+        .contact-section {
+            background: var(--gradient-primary);
+            color: white;
+            text-align: center;
+        }
+        
+        .contact-section .section-title {
+            color: white;
+        }
+        
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .contact-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            backdrop-filter: blur(10px);
+        }
+        
+        .contact-item i {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .mosaic-segments {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .segment-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-md);
+            text-align: center;
+        }
+        
+        .segment-card.high-response {
+            border-left: 4px solid var(--success);
+        }
+        
+        .segment-card.medium-response {
+            border-left: 4px solid var(--warning);
+        }
+        
+        .segment-card.low-response {
+            border-left: 4px solid var(--error);
+        }
+        
+        .data-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-md);
+            text-align: center;
+        }
+        
+        .stat-card .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        @media (max-width: 768px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .project-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Project Hero -->
+    <section class="project-hero">
+        <div class="section-content">
+            <a href="../index.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i>
+                Back to Portfolio
+            </a>
+            <h1>Direct Mail Campaign Optimization</h1>
+            <p style="color: white;">Data-driven analysis of 661K+ supporter records to optimize direct mail campaigns and improve response rates</p>
+        </div>
+    </section>
+
+    <!-- Problem Statement -->
+    <section class="project-section">
+        <div class="section-content">
+            <h2 class="section-title">🤔 Why This Project?</h2>
+            <div class="content-grid">
+                <div>
+                    <h3 class="section-subtitle">Problem Statement</h3>
+                    <p class="content-text">
+                        The effectiveness of direct mailcampaigns varies across supporter segments and geographic regions, leading to 
+                        several critical challenges:
+                    </p>
+                    <ul class="content-text">
+                        <li><strong>Response Rate Optimization:</strong> Identifying factors influencing supporters' likelihood to respond to direct mail appeals within a three-month timeframe</li>
+                        <li><strong>Audience Selection:</strong> Determining the most promising supporter segments based on historical response patterns</li>
+                        <li><strong>Cost-Effectiveness:</strong> Balancing campaign costs against expected returns, given varying response likelihoods</li>
+                        <li><strong>Data Utilization:</strong> Leveraging CRM and external data to improve prediction accuracy and targeting</li>
+                        <li><strong>Geographic Variations:</strong> Understanding regional differences in response rates and donation patterns</li>
+                    </ul>
+                </div>
+                <div class="highlight-box">
+                    <h4>Objectives & Goals</h4>
+                    <ul>
+                        <li>Identify key demographic, geographic, and behavioral characteristics influencing direct mail response likelihood</li>
+                        <li>Analyze donation patterns across supporter segments to understand giving behaviors and preferences</li>
+                        <li>Evaluate the impact of Mosaic consumer classifications on donation behavior and response rates</li>
+                        <li>Develop data-driven insights to enhance audience selection strategies</li>
+                        <li>Provide preliminary recommendations to improve campaign effectiveness and response rates</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Data Description -->
+    <section class="project-section">
+        <div class="section-content">
+            <h2 class="section-title">📊 Data Description</h2>
+            <div class="content-grid">
+                <div>
+                    <h3 class="section-subtitle">Dataset Overview</h3>
+                    <ul class="content-text">
+                        <li><strong>Supporters Data:</strong> Demographic and contact information including age, gender, and postal codes</li>
+                        <li><strong>Campaigns Data:</strong> Details on fundraising campaigns, including type, name, and timing</li>
+                        <li><strong>Campaign Members Data:</strong> Records of supporters targeted in specific campaigns</li>
+                        <li><strong>Donations Data:</strong> Transaction records with dates, amounts, and associated campaigns</li>
+                        <li><strong>Regular Giving Data:</strong> Information on recurring donation arrangements</li>
+                        <li><strong>External Data:</strong> Mosaic consumer classifications linked to postcode data</li>
+                    </ul>
+                </div>
+                <div class="highlight-box">
+                    <h4>Data Preparation & Quality</h4>
+                    <ul>
+                        <li>Standardized formatting of contact and demographic fields</li>
+                        <li>Handled missing values to maintain analytical integrity</li>
+                        <li>Identified and addressed anomalies in numeric fields</li>
+                        <li>Calculated supporter tenure, recency, frequency, and monetary value metrics</li>
+                        <li>Transformed metrics into quintiles for RFM analysis</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="data-stats">
+                <div class="stat-card">
+                    <div class="stat-number">661K+</div>
+                    <div>Supporters</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">554</div>
+                    <div>Direct Mail Campaigns</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">1M+</div>
+                    <div>Donation Transactions</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">84</div>
+                    <div>Data Columns</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Methodology -->
+    <section class="project-section">
+        <div class="section-content">
+            <h2 class="section-title">🔧 How I Built This</h2>
+            <div class="content-grid">
+                <div>
+                    <h3 class="section-subtitle">Analytics Approach</h3>
+                    <p class="content-text">
+                        The analysis followed a structured approach to derive actionable insights:
+                    </p>
+                    <ul class="content-text">
+                        <li><strong>Exploratory Data Analysis (EDA):</strong> Investigated geographic distribution, donation patterns, and correlations</li>
+                        <li><strong>RFM Framework:</strong> Utilized Recency, Frequency, and Monetary value to segment supporters</li>
+                        <li><strong>Correlation Analysis:</strong> Examined relationships between supporter attributes and response likelihood</li>
+                        <li><strong>Feature Importance Analysis:</strong> Employed machine learning to identify key predictors</li>
+                        <li><strong>Temporal Analysis:</strong> Analyzed seasonal and monthly donation patterns</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="section-subtitle">Technologies & Methods</h3>
+                    <div class="tech-stack-grid">
+                        <div class="tech-item">
+                            <i class="fab fa-python"></i>
+                            <div>Python</div>
+                            <small>Core analysis</small>
+                        </div>
+                        <div class="tech-item">
+                            <i class="fas fa-chart-pie"></i>
+                            <div>RFM Analysis</div>
+                            <small>Customer segmentation</small>
+                        </div>
+                        <div class="tech-item">
+                            <i class="fas fa-brain"></i>
+                            <div>Random Forest</div>
+                            <small>Feature importance</small>
+                        </div>
+                        <div class="tech-item">
+                            <i class="fas fa-chart-line"></i>
+                            <div>Matplotlib/Seaborn</div>
+                            <small>Visualizations</small>
+                        </div>
+                        <div class="tech-item">
+                            <i class="fas fa-database"></i>
+                            <div>Pandas</div>
+                            <small>Data manipulation</small>
+                        </div>
+                        <div class="tech-item">
+                            <i class="fas fa-calculator"></i>
+                            <div>Scikit-learn</div>
+                            <small>Machine learning</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Visualizations & Insights -->
+    <section class="project-section">
+        <div class="section-content">
+            <h2 class="section-title">📈 Visualizations & Insights</h2>
+            
+            <div class="visualization-container">
+                <h3 class="section-subtitle">Geographic Distribution Analysis</h3>
+                <div class="chart-container">
+                    <canvas id="geoChart"></canvas>
+                </div>
+                <p class="content-text">
+                    The analysis revealed concentration in New South Wales and Victoria, but 
+                    underrepresentation in Queensland and Western Australia compared to population proportions. 
+                    A significant data gap (supporters lack geographic data) was identified.
+                </p>
+            </div>
+
+            <div class="mosaic-segments">
+                <div class="segment-card high-response">
+                    <h4>Mosaic Type A</h4>
+                    <p><strong>Affluent Professionals</strong></p>
+                    <p>High-value donors</p>
+                </div>
+                <div class="segment-card high-response">
+                    <h4>Mosaic Type N</h4>
+                    <p><strong>Rural Commitment</strong></p>
+                    <p>Community-focused</p>
+                </div>
+                <div class="segment-card high-response">
+                    <h4>Mosaic Type D</h4>
+                    <p><strong>Secure Tranquility</strong></p>
+                    <p>Stable, traditional</p>
+                </div>
+            </div>
+
+            <div class="insights-grid">
+                <div class="insight-card">
+                    <h4>RFM Predictive Power</h4>
+                    <p>Recent engagement (Recency) is the strongest predictor of response, followed by cumulative giving (Monetary_Sum).</p>
+                </div>
+                <div class="insight-card">
+                    <h4>Seasonal Patterns</h4>
+                    <p>Peaks in June and November-December, with troughs in July.</p>
+                </div>
+                <div class="insight-card">
+                    <h4>Donation Distribution</h4>
+                    <p>Mid-range donations ($20-50) are the most frequent, while high-value donations ($1000+) account for a significant portion of the total value from a small number of transactions.</p>
+                </div>
+                <div class="insight-card">
+                    <h4>Feature Importance</h4>
+                    <p>Monetary_Sum and Monetary_Max were top predictors, followed by Recency in the machine learning model.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Business Recommendations -->
+    <section class="project-section">
+        <div class="section-content">
+            <h2 class="section-title">💡 Actionable Business Recommendations</h2>
+            <div class="content-grid">
+                <div>
+                    <h3 class="section-subtitle">Strategic Implementation</h3>
+                    <p class="content-text">
+                        Based on the comprehensive EDA and RFM analysis of 661K+ supporter records, here are key recommendations 
+                        to enhance direct mail campaign effectiveness:
+                    </p>
+                </div>
+                <div>
+                    <ul class="recommendations-list">
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <strong>Tiered Audience Selection Using RFM Scores</strong><br>
+                                Prioritize supporters with high RFM scores (8-10) for all campaigns, include medium scores (5-7) with customized messaging, and use selective reactivation for low scores (1-4)
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <strong>Tailored Messaging by Mosaic Segments</strong><br>
+                                Develop targeted communications for Mosaic types A (impact/leadership), N (community values), and D (stability/tradition) to leverage their high response rates
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <strong>Geographic Strategy Optimization</strong><br>
+                                Focus retention campaigns on high-density NSW and VIC regions, launch growth initiatives in underrepresented QLD and WA, and address the significant geographic data gap
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <strong>Seasonal Campaign Timing</strong><br>
+                                Concentrate high-value appeals in June, November, and December, schedule acquisition initiatives in moderate months, and reduce activity in low-response periods like July
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <strong>High-Value Donor Cultivation</strong><br>
+                                Develop targeted programs for $500+ donors, create upgrade pathways for $100-500 donors, and test variable ask matrices reflecting donation distribution patterns
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <strong>Continuous Improvement Framework</strong><br>
+                                Develop predictive models using key features, implement controlled experiments for tailored messaging, and establish metrics and monitoring processes to evaluate strategy impacts
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="project-section contact-section">
+        <div class="section-content">
+            <h2 class="section-title">💬 Let's Discuss This Project</h2>
+            <p style="color: white; font-size: 1.1rem; line-height: 1.8;">
+                Reach out to discuss my direct mail 'Predictive Modeling' work in detail!
+            </p>
+        </div>
+    </section>
+
+    <script src="../script.js"></script>
+    <script>
+        // Geographic Distribution Chart
+        const ctx = document.getElementById('geoChart');
+        if (ctx) {
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['New South Wales', 'Victoria', 'Queensland', 'Western Australia', 'Other States', 'Missing Data'],
+                    datasets: [{
+                        data: [14.75, 10.60, 5.19, 3.83, 4.31, 61.32],
+                        backgroundColor: [
+                            'rgba(16, 185, 129, 0.8)',
+                            'rgba(59, 130, 246, 0.8)',
+                            'rgba(245, 158, 11, 0.8)',
+                            'rgba(168, 85, 247, 0.8)',
+                            'rgba(239, 68, 68, 0.8)',
+                            'rgba(156, 163, 175, 0.8)'
+                        ],
+                        borderColor: [
+                            'rgba(16, 185, 129, 1)',
+                            'rgba(59, 130, 246, 1)',
+                            'rgba(245, 158, 11, 1)',
+                            'rgba(168, 85, 247, 1)',
+                            'rgba(239, 68, 68, 1)',
+                            'rgba(156, 163, 175, 1)'
+                        ],
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                padding: 20,
+                                usePointStyle: true
+                            }
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html> 

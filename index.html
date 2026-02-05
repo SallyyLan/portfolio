@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sally Lan - Data Science & Analytics Professional</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-text">SL</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero animated-hero">
+        <div class="hero-background-animation"></div>
+        <div class="hero-container">
+            <div class="hero-content centered">
+                <h1 class="hero-title animate-on-scroll">
+                    <span class="gradient-text">Hey, I'm Sally Lan</span>
+                </h1>
+                <h2 class="hero-subtitle animate-on-scroll">Data Scientist & Analytics Professional</h2>
+                <p class="hero-description animate-on-scroll">
+                    Transforming complex data into actionable insights through machine learning, 
+                    statistical analysis, and innovative data visualization.
+                </p>
+                <div class="hero-buttons animate-on-scroll">
+                    <a href="#projects" class="btn btn-primary">View Projects</a>
+                    <a href="#about" class="btn btn-secondary">Get In Touch</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">👋 About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>
+                        I'm a passionate data specialist with expertise in machine learning, statistical analysis, 
+                        and data visualization. My experience spans from analyzing 661K+ donor records to to developing data-driven solutions. I'm particularly skilled in Python, with a proven track record of delivering high-impact results.
+                    </p>
+                    <p>
+                        Beyond data science, I'm deeply interested in software engineering, particularly in building dynamic websites and web applications, where I enjoy creating innovative and user-centric digital experiences.
+                    </p>
+                        <div class="education">
+                            <h3>🎓 Education</h3>
+                            <div class="education-item">
+                                <span class="degree">MS in Data Analytics</span>
+                                <span class="school">University of Sydney</span>
+                            </div>
+                            <div class="education-item">
+                                <span class="degree">BC in Data Analytics</span>
+                                <span class="school">University of New South Wales</span>
+                            </div>
+                        </div>
+                        <div class="experience">
+                            <h3>💼 Professional Experience</h3>
+                            <div class="experience-item">
+                                <span class="role">Student Data Analyst</span>
+                                <span class="company">UNICEF Australia</span>
+                            </div>
+                            <div class="experience-item">
+                                <span class="role">Product Tester Intern</span>
+                                <span class="company">Cardinal Blue Software Inc. (PicCollage)</span>
+                            </div>
+                            <div class="experience-item">
+                                <span class="role">Student Consultant</span>
+                                <span class="company">University of New South Wales</span>
+                            </div>
+                        </div>
+                </div>
+                <div class="about-visual">
+                    <div class="profile-card">
+                        <div class="profile-image">
+                            <span style="font-size: 4rem;">👩‍💻</span>
+                        </div>
+                        <div class="profile-info">
+                            <h3>Sally Lan</h3>
+                            <p>Data Science & Analytics Specialist</p>
+                            <p><i class="fas fa-map-marker-alt"></i> Sydney, Australia</p>
+                            <p><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/sallylan" target="_blank" style="color: inherit; text-decoration: none;">LinkedIn Profile</a></p>
+                            <!-- <p><i class="fas fa-file-pdf"></i> <a href="resume.pdf" target="_blank" style="color: inherit; text-decoration: none;">Resume (PDF)</a></p> -->
+                            <p><i class="fas fa-envelope"></i> shihhan6@gmail.com</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2 class="section-title">🚀 Featured Projects</h2>
+            
+            <!-- Project Type Toggle -->
+            <div class="project-toggle">
+                <button class="toggle-btn active" data-type="da">Data Analytics</button>
+                <button class="toggle-btn" data-type="sde">Software Development</button>
+            </div>
+            
+            <!-- DA Projects -->
+            <div class="projects-grid" id="da-projects">
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>☎️ Telecom Churn Prediction & Retention</h3>
+                    </div>
+                    <p class="project-description">
+                        End-to-end churn prediction for a major U.S. wireless telecom: data cleaning, descriptive insights, supervised modeling, and actionable retention strategy.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">R</span>
+                        <span class="tech-tag">Machine Learning</span>
+                        <span class="tech-tag">Clustering</span>
+                        <span class="tech-tag">Data Visualization</span>
+                        <span class="tech-tag">Shiny App</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="projects/Telecom-Churn-Prediction.html" class="project-link">👀 Demo</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>📊 Donors' Behavior Analysis</h3>
+                    </div>
+                    <p class="project-description">
+                        Analyzed supporter demographics, geographic distributions, and donation patterns to develop targeted marketing strategies, enhance campaign timing, and improve resource allocation.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">RFM Analysis</span>
+                        <span class="tech-tag">Machine Learning</span>
+                        <span class="tech-tag">Data Visualization</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="projects/customer-behavior.html" class="project-link">👀 Demo</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>🐦 Tweets Analysis - NLP</h3>
+                    </div>
+                    <p class="project-description">
+                        A data-driven analysis to enhance fan engagement and TV viewership. Explored Twitter activity and its correlation with live broadcasts, focusing on customer behavior, sentiment analysis, and marketing optimization. 
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">NLP</span>
+                        <span class="tech-tag">Sentiment Analysis</span>
+                        <span class="tech-tag">Topic Modeling</span>
+                        <span class="tech-tag">Machine Learning</span>
+                        <span class="tech-tag">Data Visualization</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="projects/tweets-analysis.html" class="project-link">👀 Demo</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>🏠 Inside Airbnb Dashboard</h3>
+                    </div>
+                    <p class="project-description">
+                        Interactive dashboard to visualize Airbnb data 
+                        across 3 major Australian cities and 200 neighborhoods.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Plotly Dash</span>
+                        <span class="tech-tag">Bootstrap</span>
+                        <span class="tech-tag">Data Visualization</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="projects/airbnb-dashboard.html" class="project-link">👀 Demo</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- SDE Projects -->
+            <div class="projects-grid" id="sde-projects" style="display: none;">
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>📚 Last Minute Exam Prep AI</h3>
+                    </div>
+                    <div class="project-header">
+                        <a>🏆 The Most Innovative Solution Award</a>
+                    </div>
+                    <p class="project-description">
+                        Full-stack web application for Seikai Hackathon featuring AI-powered exam preparation. 
+                        Built with FastAPI backend using Google Gemini and OpenAI APIs, featuring priority queue 
+                        system and auto-generated practice exams with comprehensive study tracking.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">FastAPI</span>
+                        <span class="tech-tag">Google Gemini</span>
+                        <span class="tech-tag">OpenAI API</span>
+                        <span class="tech-tag">Jinja2</span>
+                        <span class="tech-tag">Tailwind CSS</span>
+                        <span class="tech-tag">SQLAlchemy</span>
+                        <span class="tech-tag">JavaScript</span>
+                    </div>
+                    <div class="project-links">
+                        <a class="project-link">🚀 Coming Soon</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>💕 Pick Up Line Generator</h3>
+                    </div>
+                    <p class="project-description">
+                        Interactive Streamlit web application that generates personalized pickup lines using OpenAI API. 
+                        Users can select subjects and styles, with the AI generating contextually relevant and creative 
+                        pickup lines based on the selected inputs and subject-related concepts.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Streamlit</span>
+                        <span class="tech-tag">OpenAI API</span>
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Web App</span>
+                    </div>
+                    <div class="project-links">
+                        <a class="project-link">🚀 Coming Soon</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <!-- <section id="skills" class="skills">
+        <div class="container">
+            <h2 class="section-title">Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Programming Languages</h3>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <span class="skill-name">Python</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 95%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">R</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">SQL</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">JavaScript</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 75%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Data Science & ML</h3>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <span class="skill-name">Pandas</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 95%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Scikit-learn</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">NLP</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">LangChain</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 80%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Visualization & Tools</h3>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <span class="skill-name">Tableau</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Plotly</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Streamlit</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">React</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 75%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>✨ &copy; 2025 Sally Lan. All rights reserved. ✨</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 

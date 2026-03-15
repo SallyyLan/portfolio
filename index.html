@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sally Lan| Full-Stack SDE Portfolio</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ── Navigation dots ── -->
+  <nav class="nav-dots" aria-label="Page sections">
+    <a href="#hero"       class="nav-dot active" data-label="Home"></a>
+    <a href="#experience" class="nav-dot"         data-label="Experience"></a>
+    <a href="#projects"   class="nav-dot"         data-label="Projects"></a>
+  </nav>
+
+  <!-- ══════════════════════════════════════════
+       SECTION 1 — HERO
+  ══════════════════════════════════════════ -->
+  <section id="hero" class="section section--hero">
+    <div class="bg-grid"></div>
+    <div class="bg-scanlines"></div>
+
+    <div class="hero-layout">
+
+      <!-- Computer setup -->
+      <div class="bear-wrapper" id="bearWrapper">
+
+        <svg class="bear-svg" viewBox="0 0 420 310" xmlns="http://www.w3.org/2000/svg" aria-label="Neon computer setup with code on screen">
+          <defs>
+            <filter id="cyanGlow" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur"/>
+              <feColorMatrix in="blur" type="matrix"
+                values="0 0 0 0 0  0 0.96 0.98 0 1  0 0 1 0 1  0 0 0 16 -6"
+                result="glow"/>
+              <feMerge><feMergeNode in="glow"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+            <filter id="magentaGlow" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur in="SourceGraphic" stdDeviation="2.5" result="blur"/>
+              <feColorMatrix in="blur" type="matrix"
+                values="1 0 0 0 1  0 0 0 0 0  0 0 0.6 0 0.6  0 0 0 14 -5"
+                result="glow"/>
+              <feMerge><feMergeNode in="glow"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+            <filter id="softGlow" x="-40%" y="-40%" width="180%" height="180%">
+              <feGaussianBlur stdDeviation="5" result="blur"/>
+              <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+            <radialGradient id="screenGrad" cx="50%" cy="50%" r="50%">
+              <stop offset="0%"   stop-color="#0d2040"/>
+              <stop offset="100%" stop-color="#030310"/>
+            </radialGradient>
+            <radialGradient id="screenLight" cx="50%" cy="50%" r="50%">
+              <stop offset="0%"   stop-color="rgba(0,245,255,0.04)"/>
+              <stop offset="100%" stop-color="transparent"/>
+            </radialGradient>
+          </defs>
+
+          <!-- ── Monitor ── -->
+          <rect class="monitor-frame" x="90" y="22" width="240" height="176" rx="12"
+            fill="#08081e" stroke="#00f5ff" stroke-width="2.5" filter="url(#cyanGlow)"/>
+          <rect x="100" y="32" width="220" height="152" rx="7" fill="url(#screenGrad)"/>
+          <!-- Screen scanlines -->
+          <rect x="100" y="32" width="220" height="152" rx="7"
+            fill="url(#screenLight)" opacity="0.8"/>
+
+          <!-- Code on screen -->
+          <g font-family="monospace" font-size="11.5">
+            <text x="115" y="58"  fill="#bd00ff">const</text>
+            <text x="152" y="58"  fill="#00f5ff"> Sally</text>
+            <text x="192" y="58"  fill="#ffffff"> = () =&gt; &#123;</text>
+            <text x="115" y="78"  fill="#ff0099">  ship</text>
+            <text x="150" y="78"  fill="#ffffff">(</text>
+            <text x="155" y="78"  fill="#39ff14">Products</text>
+            <text x="212" y="78"  fill="#ffffff">);</text>
+            <text x="115" y="98"  fill="#ff6600">  dance</text>
+            <text x="158" y="98"  fill="#ffffff">(</text>
+            <text x="163" y="98"  fill="#39ff14">toEDM</text>
+            <text x="203" y="98"  fill="#ffffff">);</text>
+            <text x="115" y="118" fill="#00f5ff">  build</text>
+            <text x="157" y="118" fill="#ffffff">(</text>
+            <text x="162" y="118" fill="#39ff14">future</text>
+            <text x="202" y="118" fill="#ffffff">);</text>
+            <text x="115" y="138" fill="#ffffff">&#125;</text>
+            <!-- blinking cursor -->
+            <rect class="cursor-blink" x="115" y="148" width="7" height="13" fill="#00f5ff" rx="1"/>
+          </g>
+          <!-- Screen border glow -->
+          <rect x="100" y="32" width="220" height="152" rx="7"
+            fill="none" stroke="#00f5ff" stroke-width="0.8" opacity="0.25"/>
+
+          <!-- Monitor stand -->
+          <rect x="196" y="196" width="28" height="30" rx="4"
+            fill="#0c0c24" stroke="#00f5ff" stroke-width="1.5"/>
+          <!-- Monitor base -->
+          <rect x="160" y="223" width="100" height="11" rx="5"
+            fill="#0c0c24" stroke="#00f5ff" stroke-width="1.5"/>
+
+          <!-- ── Keyboard ── -->
+          <rect class="keyboard-glow" x="70" y="248" width="280" height="34" rx="9"
+            fill="#0c0c24" stroke="#ff0099" stroke-width="1.8" filter="url(#magentaGlow)"/>
+          <rect x="82"  y="256" width="256" height="6"  rx="2" fill="rgba(255,0,153,0.18)"/>
+          <rect x="90"  y="266" width="240" height="6"  rx="2" fill="rgba(255,0,153,0.12)"/>
+          <!-- Individual key hints -->
+          <g fill="rgba(255,0,153,0.25)">
+            <rect x="82"  y="256" width="16" height="6" rx="1"/>
+            <rect x="102" y="256" width="16" height="6" rx="1"/>
+            <rect x="122" y="256" width="16" height="6" rx="1"/>
+            <rect x="142" y="256" width="16" height="6" rx="1"/>
+            <rect x="162" y="256" width="16" height="6" rx="1"/>
+            <rect x="182" y="256" width="16" height="6" rx="1"/>
+            <rect x="202" y="256" width="16" height="6" rx="1"/>
+            <rect x="222" y="256" width="16" height="6" rx="1"/>
+            <rect x="242" y="256" width="16" height="6" rx="1"/>
+            <rect x="262" y="256" width="16" height="6" rx="1"/>
+            <rect x="282" y="256" width="16" height="6" rx="1"/>
+            <rect x="302" y="256" width="46" height="6" rx="1"/>
+          </g>
+
+          <!-- ── Desk surface ── -->
+          <rect x="18" y="278" width="384" height="18" rx="6"
+            fill="#0a0a22" stroke="#bd00ff" stroke-width="1.8"/>
+          <!-- Desk edge glow -->
+          <rect x="18" y="278" width="384" height="18" rx="6"
+            fill="none" stroke="#bd00ff" stroke-width="0.5" opacity="0.4" filter="url(#softGlow)"/>
+
+        </svg>
+      </div><!-- /bear-wrapper -->
+
+      <!-- Hero text -->
+      <div class="hero-text">
+        <div class="hero-badge">
+          <span class="badge-dot"></span>
+          Available for opportunities
+        </div>
+        <p class="hero-greeting">Hello, I'm</p>
+        <h1 class="hero-name">
+          <span class="name-line">Sally Lan</span>
+        </h1>
+        <div class="hero-role-line">
+          <span class="role-bracket">&lt;</span>
+          <span class="hero-role">Software Engineer</span>
+          <span class="role-bracket"> /&gt;</span>
+        </div>
+        <p class="hero-desc">
+          Building products at the intersection of
+          <span class="hl-cyan">clean code</span> and
+          <span class="hl-magenta">impactful products</span>.
+          Passionate about creating, shipping, and iterating fast, keeping the beat alive!
+        </p>
+        <div class="hero-actions">
+          <a href="#experience" class="btn btn-primary">View My Journey</a>
+          <a href="#projects"   class="btn btn-outline">See My Work</a>
+        </div>
+      </div>
+    </div><!-- /hero-layout -->
+
+    <div class="scroll-indicator">
+      <div class="scroll-line"></div>
+      <span>SCROLL</span>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       SECTION 2 — EXPERIENCE
+  ══════════════════════════════════════════ -->
+  <section id="experience" class="section section--experience">
+    <div class="bg-grid bg-grid-dim"></div>
+
+    <div class="exp-layout">
+
+      <div class="section-header">
+        <span class="section-label">02 / Journey</span>
+        <h2 class="section-title">Experience<span class="title-dot">.</span></h2>
+      </div>
+
+      <div class="exp-content">
+
+        <!-- ── Vertical timeline ── -->
+        <div class="timeline" id="timeline">
+
+          <!-- Ares Protein -->
+          <div class="tl-item">
+            <div class="tl-marker">
+              <div class="tl-dot"></div>
+              <div class="tl-line"></div>
+            </div>
+            <div class="tl-card">
+              <div class="tl-period">Present</div>
+              <div class="tl-company">Ares Protein</div>
+              <div class="tl-role">Software Engineer</div>
+              <p class="tl-desc">Architecting and shipping full-stack features for a high-growth protein supplement platform. Built performant UIs, scalable APIs, and data pipelines that power the product.</p>
+              <div class="tl-tags">
+                <span class="tag">React</span>
+                <span class="tag">TypeScript</span>
+                <span class="tag">Python</span>
+                <span class="tag">MySQL</span>
+                <span class="tag">AWS</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Shopee -->
+          <div class="tl-item">
+            <div class="tl-marker">
+              <div class="tl-dot"></div>
+              <div class="tl-line"></div>
+            </div>
+            <div class="tl-card">
+              <div class="tl-period">2025</div>
+              <div class="tl-company">Shopee</div>
+              <div class="tl-role">Data Associate</div>
+              <p class="tl-desc">Developed automate internal CLI tools at one of Southeast Asia's largest e-commerce platforms. Turned complex datasets into business-driving insights.</p>
+              <div class="tl-tags">
+                <span class="tag">Python</span>
+                <span class="tag">SQL</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- GatherEase AI -->
+          <div class="tl-item">
+            <div class="tl-marker">
+              <div class="tl-dot"></div>
+              <div class="tl-line"></div>
+            </div>
+            <div class="tl-card">
+              <div class="tl-period">2024</div>
+              <div class="tl-company">GatherEase AI</div>
+              <div class="tl-role">Co-founder</div>
+              <p class="tl-desc">Co-founded an AI-powered event management startup from zero. Led product vision, technical architecture, and the full development cycle from idea to launch.</p>
+              <div class="tl-tags">
+                <span class="tag">Python</span>
+                <span class="tag">FastAPI</span>
+                <span class="tag">React</span>
+                <span class="tag">Startup</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- PicCollage -->
+          <div class="tl-item">
+            <div class="tl-marker">
+              <div class="tl-dot"></div>
+              <div class="tl-line"></div>
+            </div>
+            <div class="tl-card">
+              <div class="tl-period">2023</div>
+              <div class="tl-company">PicCollage</div>
+              <div class="tl-role">Product Tester</div>
+              <p class="tl-desc">Conducted comprehensive product testing for a globally-used photo collage mobile app. Identified and documented bugs to improve app stability and user experience.</p>
+              <div class="tl-tags">
+                <span class="tag">QA Testing</span>
+                <span class="tag">Product Growth</span>
+                <span class="tag">Mobile</span>
+                <span class="tag">UX/UI Research</span>
+                <span class="tag">Cross Collaboration</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- UNSW -->
+          <div class="tl-item tl-item--last">
+            <div class="tl-marker">
+              <div class="tl-dot tl-dot--end"></div>
+            </div>
+            <div class="tl-card">
+              <div class="tl-period">2020 — 2022</div>
+              <div class="tl-company">University of New South Wales</div>
+              <div class="tl-role">Student Consultant</div>
+              <p class="tl-desc">Delivered consulting projects across diverse industries as part of UNSW's industry engagement company.</p>
+              <div class="client-list">
+                <span class="client-tag">🏛 Australian Maritime Museum</span>
+                <span class="client-tag">☕ Kua</span>
+                <span class="client-tag">🏆 Australian International Sports</span>
+                <span class="client-tag">💼 Grant Thornton</span>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /timeline -->
+
+        <!-- ── Social sidebar ── -->
+        <aside class="social-sidebar">
+          <p class="social-label">Find me at</p>
+          <div class="social-list">
+
+            <!-- LinkedIn -->
+            <a href="https://www.linkedin.com/in/sallylan" target="_blank" rel="noopener" class="social-link" id="linkedinLink">
+              <div class="social-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/>
+                  <rect x="2" y="9" width="4" height="12"/>
+                  <circle cx="4" cy="4" r="2"/>
+                </svg>
+              </div>
+              <div class="social-info">
+                <span class="social-name">LinkedIn</span>
+                <span class="social-hint">Connect with me</span>
+              </div>
+              <span class="social-arrow">→</span>
+            </a>
+
+            <!-- GitHub -->
+            <a href="https://github.com/SallyyLan" target="_blank" rel="noopener" class="social-link" id="githubLink">
+              <div class="social-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+                </svg>
+              </div>
+              <div class="social-info">
+                <span class="social-name">GitHub</span>
+                <span class="social-hint">See my Code World</span>
+              </div>
+              <span class="social-arrow">→</span>
+            </a>
+
+            <!-- Gmail -->
+            <a href="mailto:shihhan6@gmail.com" class="social-link" id="gmailLink">
+              <div class="social-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                  <polyline points="22,6 12,13 2,6"/>
+                </svg>
+              </div>
+              <div class="social-info">
+                <span class="social-name">Gmail</span>
+                <span class="social-hint">Drop me a message</span>
+              </div>
+              <span class="social-arrow">→</span>
+            </a>
+
+          </div><!-- /social-list -->
+
+          <!-- Mini bear decoration -->
+          <div class="sidebar-bear-card">
+            <svg class="mini-bear-svg" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="24" cy="20" r="11" fill="#0f0f28" stroke="#00f5ff" stroke-width="1.5"/>
+              <circle cx="56" cy="20" r="11" fill="#0f0f28" stroke="#00f5ff" stroke-width="1.5"/>
+              <circle cx="24" cy="20" r="6"  fill="#ff0099" opacity="0.75"/>
+              <circle cx="56" cy="20" r="6"  fill="#ff0099" opacity="0.75"/>
+              <rect x="14" y="18" width="52" height="46" rx="14" fill="#0f0f28" stroke="#00f5ff" stroke-width="1.5"/>
+              <rect x="22" y="30" width="15" height="12" rx="4" fill="none" stroke="#00f5ff" stroke-width="1.5"/>
+              <rect x="43" y="30" width="15" height="12" rx="4" fill="none" stroke="#00f5ff" stroke-width="1.5"/>
+              <line x1="37" y1="36" x2="43" y2="36" stroke="#00f5ff" stroke-width="1.5"/>
+              <ellipse cx="40" cy="48" rx="4.5" ry="3.5" fill="#ff0099"/>
+              <path d="M33,55 Q40,62 47,55" stroke="#fff" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+            </svg>
+            <p class="sidebar-quote">"Ship fast, learn faster"</p>
+          </div>
+
+        </aside>
+      </div><!-- /exp-content -->
+    </div><!-- /exp-layout -->
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       SECTION 3 — PROJECTS
+  ══════════════════════════════════════════ -->
+  <section id="projects" class="section section--projects">
+    <div class="bg-grid bg-grid-purple"></div>
+
+    <div class="proj-layout">
+
+      <div class="section-header">
+        <span class="section-label">03 / Creation</span>
+        <h2 class="section-title">Projects<span class="title-dot title-dot--purple">.</span></h2>
+      </div>
+
+      <!-- Category toggle -->
+      <div class="proj-toggle" id="projToggle">
+        <button class="toggle-btn toggle-active" data-filter="business">
+          <span>💼</span> Business Projects
+        </button>
+        <button class="toggle-btn" data-filter="fun">
+          <span>🎮</span> Side Projects
+        </button>
+      </div>
+
+      <!-- Cards grid -->
+      <div class="proj-grid" id="projGrid">
+
+        <!-- ── Business ── -->
+        <article class="proj-card" data-category="business" data-project="edm-visualizer" data-link="https://github.com/SallyyLan/Google-Review-Analyzer">
+          <div class="card-glow card-glow-cyan"></div>
+          <div class="card-top">
+            <span class="card-emoji">📊</span>
+            <span class="card-badge">Review Analytics</span>
+          </div>
+          <h2 class="card-title">Google Reviews Analyzer</h2>
+          <p class="card-desc">An async Flask + LLM web app that analyzes reviews into sentiment and thematic dashboards, prioritizing actionable insights for SMB decision-making</p>
+          <div class="card-tags">
+            <span class="tag tag-cyan">Flask</span>
+            <span class="tag tag-magenta">LLM</span>
+            <span class="tag tag-purple">Sentiment Analysis/Topic Modeling</span>
+            <span class="tag tag-orange">SMB Insights</span>
+          </div>
+          <div class="card-footer">
+            <span class="card-cta">View Details →</span>
+          </div>
+        </article>
+
+
+
+        <article class="proj-card" data-category="business" data-project="ares-protein">
+          <div class="card-glow card-glow-cyan"></div>
+          <div class="card-top">
+            <span class="card-emoji">⚡</span>
+            <span class="card-badge">Production</span>
+          </div>
+          <h2 class="card-title">Ares Protein Platform</h2>
+          <p class="card-desc">A production-ready, scalable e-commerce brand platform (serving 200+ clients) with responsive React/TypeScript front end, Django REST/MySQL backend, and CI/CD for reliable deployments.</p>
+          <div class="card-tags">
+            <span class="tag tag-cyan">Full-Stack</span>
+            <span class="tag tag-magenta">ScalablePlatform</span>
+            <span class="tag tag-purple">React/TypeScript</span>
+            <span class="tag tag-orange">DjangoREST</span>
+          </div>
+          <div class="card-footer">
+            <span class="card-cta-soon">Coming Soon!</span>
+          </div>
+        </article>
+
+        <article class="proj-card" data-category="business" data-project="shopee-analytics">
+          <div class="card-glow card-glow-cyan"></div>
+          <div class="card-top">
+            <span class="card-emoji">📊</span>
+            <span class="card-badge">Data/BI Workflow</span>
+          </div>
+          <h2 class="card-title">Shopee Automated BI Workflow</h2>
+          <p class="card-desc">A Python CLI with SQL and database integration, leveraging Claude Code Skills to streamline cross-team workflows and boost operational efficiency</p>
+          <div class="card-tags">
+            <span class="tag tag-cyan">PythonCLI</span>
+            <span class="tag tag-magenta">SQL</span>
+            <span class="tag tag-purple">WorkflowEfficiency</span>
+            <span class="tag tag-orange">ClaudeCodeSkills</span>
+          </div>
+          <div class="card-footer">
+            <span class="card-cta-soon">Coming Soon!</span>
+          </div>
+        </article>
+
+
+
+        <!-- ── Fun ── -->
+        <article class="proj-card proj-hidden" data-category="fun" data-project="bear-code">
+          <div class="card-glow card-glow-magenta"></div>
+          <div class="card-top">
+            <span class="card-emoji">📝</span>
+            <span class="card-badge card-badge-fun">Side Project</span>
+          </div>
+          <h2 class="card-title">Last Min Exam Prep, Hackathon Award🎖️</h2>
+          <p class="card-desc">Web App for students priority queuing to auto-generate prioritized practice exams from their past exams and homework</p>
+          <div class="card-tags">
+            <span class="tag tag-cyan">React</span>
+            <span class="tag tag-magenta">FastAPI</span>
+            <span class="tag tag-purple">HuggingFace (Gemini, OpenAI)</span>
+            <span class="tag tag-orange">EdTech</span>
+          </div>
+          <div class="card-footer">
+            <span class="card-cta">View Details →</span>
+          </div>
+        </article>
+
+
+
+        <article class="proj-card proj-hidden" data-category="fun" data-project="bear-code" data-link="https://github.com/SallyyLan/AI_Agent_NewsUpdater">
+          <div class="card-glow card-glow-magenta"></div>
+          <div class="card-top">
+            <span class="card-emoji">🤖</span>
+            <span class="card-badge card-badge-fun">Side Project</span>
+          </div>
+          <h2 class="card-title">AI Agent News Updater</h2>
+          <p class="card-desc">Claude Code Agents to automate AI news pipeline: ingestion, scoring, summarization, and email delivery</p>
+          <div class="card-tags">
+            <span class="tag tag-cyan">Claude Code Agents / Skills</span>
+            <span class="tag tag-magenta">Rss ingestion</span>
+            <span class="tag tag-purple">Automation</span>
+            <span class="tag tag-orange">Github Actions</span>
+          </div>
+          <div class="card-footer">
+            <span class="card-cta">View Details →</span>
+          </div>
+        </article>
+
+
+
+        <article class="proj-card proj-hidden" data-category="fun" data-project="neon-todo">
+          <div class="card-glow card-glow-magenta"></div>
+          <div class="card-top">
+            <span class="card-emoji">🎤</span>
+            <span class="card-badge card-badge-fun">Side Project</span>
+          </div>
+          <h2 class="card-title">Voxia</h2>
+          <p class="card-desc">A cross-accent Mandarin speech recognition system to improve communication understanding, accuracy and fluency</p>
+          <div class="card-tags">
+            <span class="tag tag-cyan">Python</span>
+            <span class="tag tag-magenta">FastAPI</span>
+            <span class="tag tag-green">OpenAI Whisper ASR</span>
+            <span class="tag tag-orange">Speech Recognition</span>
+          </div>
+          <div class="card-footer">
+            <span class="card-cta-soon">Coming Soon!</span>
+          </div>
+        </article>
+
+
+      </div><!-- /proj-grid -->
+
+      <!-- ── CTA ── -->
+      <div class="proj-cta">
+        <div class="cta-divider"></div>
+        <p class="cta-eyebrow">Ready to build something amazing?</p>
+        <h3 class="cta-heading">Let's Create Together</h3>
+        <p class="cta-body">Whether it's a startup idea, a side project, or a full product, I'm always down to ship something cool!</p>
+        <a href="mailto:your@email.com" class="btn btn-primary btn-glow">
+          Get In Touch <span class="btn-arrow">→</span>
+        </a>
+      </div>
+
+    </div><!-- /proj-layout -->
+  </section>
+
+
+  <!-- ── Scripts ── -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project Detail | Sally</title>
+  <style>
+    :root {
+      --bg:      #030310;
+      --bg-2:    #0a0a20;
+      --bg-card: #0d0d28;
+      --cyan:    #00f5ff;
+      --magenta: #ff0099;
+      --purple:  #bd00ff;
+      --orange:  #ff6600;
+      --green:   #39ff14;
+      --text:    #ffffff;
+      --text-2:  #8888aa;
+      --border:  rgba(0,245,255,.18);
+      --font-display: Arial, sans-serif;
+      --font-mono:    Arial, monospace;
+      --font-body:    Arial, sans-serif;
+      --glow-cyan:    0 0 8px rgba(0,245,255,.5), 0 0 20px rgba(0,245,255,.25);
+      --glow-magenta: 0 0 8px rgba(255,0,153,.5), 0 0 20px rgba(255,0,153,.25);
+    }
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      line-height: 1.65;
+      opacity: 0;
+      transition: opacity .5s;
+    }
+    a { text-decoration: none; color: inherit; }
+
+    ::-webkit-scrollbar       { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--cyan); border-radius: 2px; }
+
+    /* ── Background ── */
+    .bg-grid {
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,245,255,.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,245,255,.03) 1px, transparent 1px);
+      background-size: 64px 64px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── Header / nav ── */
+    .site-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      padding: 18px 60px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      background: rgba(3,3,16,.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 18px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-2);
+      cursor: pointer;
+      transition: all .25s;
+    }
+    .back-btn:hover { border-color: var(--cyan); color: var(--cyan); box-shadow: var(--glow-cyan); }
+
+    .nav-brand {
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--cyan);
+      text-shadow: var(--glow-cyan);
+    }
+
+    /* ── Main layout ── */
+    .detail-wrap {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 120px 40px 80px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ── Hero block ── */
+    .detail-hero {
+      margin-bottom: 52px;
+    }
+
+    .detail-category {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--cyan);
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 4px 14px;
+      margin-bottom: 18px;
+    }
+
+    .detail-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 18px;
+    }
+
+    .detail-title .accent { color: var(--cyan); text-shadow: var(--glow-cyan); }
+
+    .detail-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .meta-chip {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-2);
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 5px 12px;
+    }
+
+    .meta-chip .dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--cyan);
+      box-shadow: 0 0 6px var(--cyan);
+    }
+
+    /* ── Sections ── */
+    .detail-section {
+      margin-bottom: 40px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 28px 30px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .detail-section::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 3px;
+      height: 100%;
+      background: linear-gradient(to bottom, var(--cyan), var(--purple));
+      border-radius: 3px 0 0 3px;
+    }
+
+    .ds-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--magenta);
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .ds-heading {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+
+    .ds-body {
+      font-size: 14px;
+      color: var(--text-2);
+      line-height: 1.8;
+    }
+
+    .ds-body strong { color: var(--text); font-weight: 600; }
+
+    /* ── Tech stack ── */
+    .tech-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-top: 4px;
+    }
+
+    .tech-pill {
+      padding: 5px 14px;
+      border-radius: 20px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .05em;
+      border: 1px solid;
+    }
+
+    .tech-cyan    { color: var(--cyan);    background: rgba(0,245,255,.08);  border-color: rgba(0,245,255,.25); }
+    .tech-magenta { color: var(--magenta); background: rgba(255,0,153,.08);  border-color: rgba(255,0,153,.25); }
+    .tech-purple  { color: var(--purple);  background: rgba(189,0,255,.08);  border-color: rgba(189,0,255,.25); }
+    .tech-orange  { color: var(--orange);  background: rgba(255,102,0,.08);  border-color: rgba(255,102,0,.25); }
+    .tech-green   { color: var(--green);   background: rgba(57,255,20,.08);  border-color: rgba(57,255,20,.25); }
+
+    /* ── Outcome metrics ── */
+    .metrics-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 16px;
+      margin-top: 14px;
+    }
+
+    .metric-card {
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px 18px;
+      text-align: center;
+    }
+
+    .metric-value {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 900;
+      color: var(--cyan);
+      text-shadow: var(--glow-cyan);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .metric-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--text-2);
+      letter-spacing: .1em;
+    }
+
+    /* ── Project links ── */
+    .detail-links {
+      display: flex;
+      gap: 14px;
+      margin-top: 36px;
+    }
+
+    .link-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 26px;
+      border-radius: 6px;
+      font-family: var(--font-display);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all .28s;
+      border: 2px solid transparent;
+    }
+
+    .link-primary {
+      background: var(--cyan); color: var(--bg);
+      border-color: var(--cyan); box-shadow: var(--glow-cyan);
+    }
+    .link-primary:hover { background: transparent; color: var(--cyan); }
+
+    .link-outline {
+      background: transparent; color: var(--text);
+      border-color: rgba(255,255,255,.2);
+    }
+    .link-outline:hover { border-color: var(--magenta); color: var(--magenta); box-shadow: var(--glow-magenta); }
+
+    /* ── Not found state ── */
+    .not-found {
+      text-align: center;
+      padding: 100px 0;
+    }
+    .not-found .big-emoji { font-size: 60px; margin-bottom: 20px; }
+    .not-found h2 { font-family: var(--font-display); font-size: 24px; margin-bottom: 12px; color: var(--magenta); }
+    .not-found p  { color: var(--text-2); margin-bottom: 24px; }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      .site-nav   { padding: 14px 20px; }
+      .detail-wrap { padding: 100px 20px 60px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-grid"></div>
+
+  <!-- Nav -->
+  <nav class="site-nav">
+    <a href="../index.html" class="back-btn">← Back</a>
+    <span class="nav-brand">Sally / Project</span>
+  </nav>
+
+  <!-- Content injected by JS -->
+  <main class="detail-wrap" id="detailWrap">
+    <div class="not-found" id="loadingState">
+      <div class="big-emoji">⚡</div>
+      <h2>Loading…</h2>
+    </div>
+  </main>
+
+  <script>
+  /* ── Project data ── */
+  const projects = {
+    'ares-protein': {
+      title:    'Ares Protein Platform',
+      accent:   'Platform',
+      category: 'Business · Full-Stack',
+      company:  'Ares Protein',
+      period:   '2024 — Present',
+      status:   'Production',
+      emoji:    '⚡',
+      overview: 'Built the complete full-stack platform for Ares Protein — a high-growth DTC supplement brand. Responsible for the end-to-end architecture including the customer-facing storefront, admin dashboard, and the underlying API layer.',
+      challenge: 'The original setup had performance bottlenecks under load, a fragmented admin experience, and no real-time inventory visibility. The engineering challenge was to rebuild core systems without disrupting live sales.',
+      solution: 'Implemented a React frontend with code-splitting and lazy loading for sub-2s page loads. Designed a Node.js / Express REST API with PostgreSQL as the source of truth, Redis for session caching, and an event-driven inventory update system. Deployed on AWS with auto-scaling groups.',
+      outcome: 'Delivered measurable improvements across performance, conversion, and operations.',
+      metrics: [
+        { value: '60%', label: 'Faster page load' },
+        { value: '2×', label: 'Admin efficiency' },
+        { value: '99.9%', label: 'Uptime SLA' },
+        { value: '3 mo', label: 'Delivery timeline' },
+      ],
+      tech: [
+        { label: 'React',       style: 'cyan' },
+        { label: 'TypeScript',  style: 'cyan' },
+        { label: 'Node.js',     style: 'magenta' },
+        { label: 'Express',     style: 'magenta' },
+        { label: 'PostgreSQL',  style: 'purple' },
+        { label: 'Redis',       style: 'purple' },
+        { label: 'AWS EC2',     style: 'orange' },
+        { label: 'AWS S3',      style: 'orange' },
+        { label: 'Stripe API',  style: 'green' },
+      ],
+      links: { live: '#', github: null },
+    },
+
+    'shopee-analytics': {
+      title:    'Shopee Analytics Pipeline',
+      accent:   'Analytics Pipeline',
+      category: 'Business · Data Engineering',
+      company:  'Shopee',
+      period:   '2023 — 2024',
+      status:   'Internal Tool',
+      emoji:    '📊',
+      overview: 'Designed and maintained large-scale data pipelines that processed millions of daily e-commerce transactions on one of Southeast Asia\'s largest marketplaces. Delivered near-real-time analytics to business and operations teams.',
+      challenge: 'Existing batch ETL jobs ran overnight and produced stale insights by morning. Business stakeholders needed same-day visibility into sales, returns, and user behaviour across multiple markets.',
+      solution: 'Re-architected the pipeline using Apache Spark streaming ingestion, Airflow DAGs for orchestration, and a partitioned data warehouse on a columnar store. Built Tableau dashboards with sub-60-second refresh. Added anomaly detection alerts to catch data drift early.',
+      outcome: 'Enabled data-driven decisions across 5 regional teams with significantly faster insight delivery.',
+      metrics: [
+        { value: '10M+', label: 'Events/day processed' },
+        { value: '<60s', label: 'Dashboard refresh' },
+        { value: '5',    label: 'Teams served' },
+        { value: '40%',  label: 'Query speed gain' },
+      ],
+      tech: [
+        { label: 'Python',        style: 'cyan' },
+        { label: 'Apache Spark',  style: 'magenta' },
+        { label: 'Apache Airflow',style: 'magenta' },
+        { label: 'SQL',           style: 'purple' },
+        { label: 'Tableau',       style: 'orange' },
+        { label: 'Hive',          style: 'purple' },
+        { label: 'Pandas',        style: 'green' },
+      ],
+      links: { live: null, github: null },
+    },
+
+    'gathereease': {
+      title:    'GatherEase AI',
+      accent:   'AI',
+      category: 'Business · AI Startup',
+      company:  'GatherEase AI',
+      period:   '2022 — 2023',
+      status:   'Startup',
+      emoji:    '🤖',
+      overview: 'Co-founded GatherEase — an AI-powered event management platform that automates the labour-intensive parts of event coordination: attendee matching, smart scheduling, venue recommendations, and post-event analytics.',
+      challenge: 'Event managers were spending 60-70% of their time on manual coordination tasks. We set out to build an AI layer that could take over those workflows, letting organisers focus on creative and high-value decisions.',
+      solution: 'Built a FastAPI backend integrating GPT-4 for natural language event query and summarisation. Developed a smart attendee-matching algorithm using vector embeddings. React frontend with drag-and-drop schedule builder. Launched a beta with 3 paying clients in 4 months.',
+      outcome: 'Validated the market fit with real paying customers and measurable time savings for event organisers.',
+      metrics: [
+        { value: '3',   label: 'Paying clients' },
+        { value: '65%', label: 'Time saved' },
+        { value: '4mo', label: 'MVP to launch' },
+        { value: 'GPT-4', label: 'Core AI model' },
+      ],
+      tech: [
+        { label: 'OpenAI GPT-4', style: 'cyan' },
+        { label: 'FastAPI',      style: 'magenta' },
+        { label: 'React',        style: 'cyan' },
+        { label: 'PostgreSQL',   style: 'purple' },
+        { label: 'pgvector',     style: 'purple' },
+        { label: 'Python',       style: 'green' },
+        { label: 'Docker',       style: 'orange' },
+      ],
+      links: { live: '#', github: '#' },
+    },
+
+    'edm-visualizer': {
+      title:    'EDM Beat Visualizer',
+      accent:   'Visualizer',
+      category: 'Fun · Open Source',
+      company:  'Side Project',
+      period:   '2023',
+      status:   'Open Source',
+      emoji:    '🎵',
+      overview: 'A real-time browser-based audio visualizer that transforms EDM music into stunning neon visual patterns. Built entirely with vanilla JS, the Web Audio API, and HTML5 Canvas — no external rendering libraries.',
+      challenge: 'Creating a 60fps visualizer that is both visually impressive and performs smoothly even on lower-end hardware, while keeping the codebase minimal and dependency-free.',
+      solution: 'Used the Web Audio API\'s AnalyserNode to extract frequency and waveform data each animation frame. Built a custom renderer on Canvas using particle systems, bar charts, and radial waveforms, all synced to the beat. Implemented adaptive quality scaling to maintain 60fps.',
+      outcome: 'A fun, shareable tool that brings EDM visuals to any browser tab.',
+      metrics: [
+        { value: '60fps', label: 'Target framerate' },
+        { value: '0',     label: 'Dependencies' },
+        { value: '< 8KB', label: 'Bundle size' },
+      ],
+      tech: [
+        { label: 'JavaScript',    style: 'cyan' },
+        { label: 'Web Audio API', style: 'magenta' },
+        { label: 'Canvas 2D',     style: 'purple' },
+        { label: 'CSS3',          style: 'orange' },
+        { label: 'HTML5',         style: 'green' },
+      ],
+      links: { live: '#', github: '#' },
+    },
+
+    'bear-code': {
+      title:    'Be@rCode Challenge',
+      accent:   'Code Challenge',
+      category: 'Fun · Game Dev',
+      company:  'Side Project',
+      period:   '2024',
+      status:   'Side Project',
+      emoji:    '🐻',
+      overview: 'An interactive coding challenge game where you solve algorithmic puzzles guided by our Be@rbrick mascot. Features an in-browser code editor with real-time test execution and generative EDM beats that sync with your progress.',
+      challenge: 'Making a coding challenge platform feel playful and motivating rather than stressful — especially for developers learning their first algorithms.',
+      solution: 'Used Monaco Editor (the VS Code editor engine) embedded in React for a familiar coding experience. Wrote a custom test runner in a Web Worker to sandbox user code. Tied the EDM soundscape to code events (error → distorted bass, passing test → euphoric synth).',
+      outcome: 'A uniquely fun way to practice coding, with a vibe unlike any other challenge platform.',
+      metrics: [
+        { value: '20+', label: 'Challenges' },
+        { value: 'Web Worker', label: 'Safe sandbox' },
+        { value: 'Monaco', label: 'Editor engine' },
+      ],
+      tech: [
+        { label: 'React',         style: 'cyan' },
+        { label: 'TypeScript',    style: 'cyan' },
+        { label: 'Monaco Editor', style: 'magenta' },
+        { label: 'Web Workers',   style: 'purple' },
+        { label: 'Web Audio API', style: 'orange' },
+        { label: 'Zustand',       style: 'green' },
+      ],
+      links: { live: '#', github: '#' },
+    },
+
+    'neon-todo': {
+      title:    'NeonDrop Task Manager',
+      accent:   'Task Manager',
+      category: 'Fun · PWA',
+      company:  'Side Project',
+      period:   '2023',
+      status:   'Side Project',
+      emoji:    '✨',
+      overview: 'A beautifully designed Progressive Web App for task management with full offline support, Pomodoro timer, and ambient EDM soundscapes to keep you focused and in the zone.',
+      challenge: 'Most task apps are visually boring or cognitively cluttered. The goal was a minimal, beautiful app that\'s also genuinely functional — with offline-first architecture.',
+      solution: 'Built with Vue 3 + Pinia for state management, IndexedDB for offline persistence via Dexie.js, and a Service Worker for full PWA capability. The Pomodoro timer is synced to ambient sound layers that build in intensity as focus time increases.',
+      outcome: 'A delightful daily-driver that proves productivity tools can look as good as they work.',
+      metrics: [
+        { value: '100%', label: 'Offline capable' },
+        { value: 'PWA',  label: 'Installable' },
+        { value: '< 50KB', label: 'JS bundle' },
+      ],
+      tech: [
+        { label: 'Vue 3',     style: 'cyan' },
+        { label: 'Pinia',     style: 'cyan' },
+        { label: 'IndexedDB', style: 'magenta' },
+        { label: 'Dexie.js',  style: 'purple' },
+        { label: 'PWA',       style: 'orange' },
+        { label: 'CSS3',      style: 'green' },
+      ],
+      links: { live: '#', github: '#' },
+    },
+  };
+
+  /* ── Render ── */
+  function render() {
+    const params = new URLSearchParams(window.location.search);
+    const id     = params.get('id');
+    const p      = projects[id];
+    const wrap   = document.getElementById('detailWrap');
+
+    if (!p) {
+      wrap.innerHTML = `
+        <div class="not-found">
+          <div class="big-emoji">🐻</div>
+          <h2>Project not found</h2>
+          <p>This project doesn't exist yet — or maybe it's top secret.</p>
+          <a href="../index.html#projects" class="link-btn link-primary">← Back to Projects</a>
+        </div>`;
+      return;
+    }
+
+    document.title = `${p.title} | Sally`;
+
+    const techHtml = p.tech.map(t =>
+      `<span class="tech-pill tech-${t.style}">${t.label}</span>`
+    ).join('');
+
+    const metricsHtml = p.metrics.map(m => `
+      <div class="metric-card">
+        <span class="metric-value">${m.value}</span>
+        <span class="metric-label">${m.label}</span>
+      </div>`
+    ).join('');
+
+    const liveLink = p.links.live
+      ? `<a href="${p.links.live}" class="link-btn link-primary" target="_blank">↗ View Live</a>` : '';
+    const ghLink = p.links.github
+      ? `<a href="${p.links.github}" class="link-btn link-outline" target="_blank">⌥ GitHub</a>` : '';
+
+    wrap.innerHTML = `
+      <div class="detail-hero">
+        <span class="detail-category">${p.category}</span>
+        <h1 class="detail-title">
+          ${p.emoji} ${p.title.replace(p.accent, `<span class="accent">${p.accent}</span>`)}
+        </h1>
+        <div class="detail-meta">
+          <span class="meta-chip"><span class="dot"></span>${p.company}</span>
+          <span class="meta-chip"><span class="dot"></span>${p.period}</span>
+          <span class="meta-chip"><span class="dot"></span>${p.status}</span>
+        </div>
+      </div>
+
+      <div class="detail-section">
+        <p class="ds-label">Overview</p>
+        <h2 class="ds-heading">What is it?</h2>
+        <p class="ds-body">${p.overview}</p>
+      </div>
+
+      <div class="detail-section">
+        <p class="ds-label">Challenge</p>
+        <h2 class="ds-heading">The Problem</h2>
+        <p class="ds-body">${p.challenge}</p>
+      </div>
+
+      <div class="detail-section">
+        <p class="ds-label">Solution</p>
+        <h2 class="ds-heading">How We Built It</h2>
+        <p class="ds-body">${p.solution}</p>
+      </div>
+
+      <div class="detail-section">
+        <p class="ds-label">Outcome</p>
+        <h2 class="ds-heading">Results</h2>
+        <p class="ds-body">${p.outcome}</p>
+        <div class="metrics-row">${metricsHtml}</div>
+      </div>
+
+      <div class="detail-section">
+        <p class="ds-label">Stack</p>
+        <h2 class="ds-heading">Technologies Used</h2>
+        <div class="tech-grid">${techHtml}</div>
+      </div>
+
+      ${(liveLink || ghLink) ? `<div class="detail-links">${liveLink}${ghLink}</div>` : ''}
+    `;
+  }
+
+  render();
+
+  /* Fade in */
+  window.addEventListener('DOMContentLoaded', () => {
+    document.body.style.opacity = '1';
+  });
+  document.body.style.opacity = '1';
+  </script>
+</body>
+</html>

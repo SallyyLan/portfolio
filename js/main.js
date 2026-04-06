@@ -246,6 +246,8 @@ projCards.forEach(card => {
 
     if (!id) return;
 
+    if (card.querySelector('.card-cta-soon')) return;
+
     // Exit animation before navigating
     gsap.to(card, {
       scale: 0.97, duration: .12, ease: 'power2.in',

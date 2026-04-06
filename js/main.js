@@ -236,6 +236,8 @@ toggleBtns.forEach(btn => {
    ============================================================ */
 projCards.forEach(card => {
   card.addEventListener('click', () => {
+    if (card.querySelector('.card-cta-soon')) return;
+
     const externalLink = card.dataset.link;
     const id = card.dataset.project;
 
@@ -245,8 +247,6 @@ projCards.forEach(card => {
     }
 
     if (!id) return;
-
-    if (card.querySelector('.card-cta-soon')) return;
 
     // Exit animation before navigating
     gsap.to(card, {

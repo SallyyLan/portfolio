@@ -815,6 +815,10 @@ a { text-decoration: none; color: inherit; }
   color: var(--cyan);
 }
 
+.proj-card:has(.card-cta-soon) {
+  cursor: default;
+}
+
 /* "Coming Soon" variant — muted style */
 .card-cta-soon {
   display: inline-block;

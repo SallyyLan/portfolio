@@ -130,6 +130,37 @@ heroTl
   .from('.scroll-indicator', { opacity: 0, duration: .5 }, '-=.1');
 
 /* ============================================================
+   HERO COMPUTER — mouse-tilt (isometric 3D)
+   ============================================================ */
+function initHeroTilt() {
+  const stage = $('bearWrapper');
+  const rig   = $('bearSvg');
+  if (!stage || !rig) return;
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const canHover      = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  if (reduceMotion || !canHover) return; // static isometric pose only
+
+  const MAX_TILT = 9; // degrees — capped well below anything that could clip into the hero text
+  const setRotateX = gsap.quickTo(rig, 'rotationX', { duration: .4, ease: 'power3.out' });
+  const setRotateY = gsap.quickTo(rig, 'rotationY', { duration: .4, ease: 'power3.out' });
+
+  stage.addEventListener('mousemove', e => {
+    const rect = stage.getBoundingClientRect();
+    const nx = (e.clientX - rect.left) / rect.width  - 0.5; // -0.5 .. 0.5
+    const ny = (e.clientY - rect.top)  / rect.height - 0.5;
+    setRotateY(nx * MAX_TILT * 2);
+    setRotateX(-ny * MAX_TILT * 2);
+  });
+
+  stage.addEventListener('mouseleave', () => {
+    setRotateX(0);
+    setRotateY(0);
+  });
+}
+heroTl.eventCallback('onComplete', initHeroTilt);
+
+/* ============================================================
    TIMELINE — Intersection Observer
    ============================================================ */
 const tlObserver = new IntersectionObserver(entries => {

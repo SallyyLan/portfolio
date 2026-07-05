@@ -26,8 +26,8 @@
 
       <!-- Computer setup -->
       <div class="bear-wrapper" id="bearWrapper">
-
-        <svg class="bear-svg" viewBox="0 0 420 310" xmlns="http://www.w3.org/2000/svg" aria-label="Neon computer setup with code on screen">
+       <div class="bear-float">
+        <svg class="bear-svg" id="bearSvg" viewBox="0 0 420 310" xmlns="http://www.w3.org/2000/svg" aria-label="Neon computer setup with code on screen, rendered in isometric 3D">
           <defs>
             <filter id="cyanGlow" x="-30%" y="-30%" width="160%" height="160%">
               <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur"/>
@@ -47,6 +47,9 @@
               <feGaussianBlur stdDeviation="5" result="blur"/>
               <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
             </filter>
+            <filter id="heroDropShadow" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="8"/>
+            </filter>
             <radialGradient id="screenGrad" cx="50%" cy="50%" r="50%">
               <stop offset="0%"   stop-color="#0d2040"/>
               <stop offset="100%" stop-color="#030310"/>
@@ -55,11 +58,27 @@
               <stop offset="0%"   stop-color="rgba(0,245,255,0.04)"/>
               <stop offset="100%" stop-color="transparent"/>
             </radialGradient>
+            <linearGradient id="sideFace" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#020208"/>
+              <stop offset="100%" stop-color="#0a0a20"/>
+            </linearGradient>
           </defs>
 
+          <!-- Ambient glow behind monitor -->
+          <ellipse cx="210" cy="110" rx="160" ry="95" fill="#00f5ff" opacity="0.08" filter="url(#heroDropShadow)"/>
+
+          <!-- Monitor drop shadow -->
+          <rect x="95" y="210" width="230" height="18" rx="9" fill="#000" opacity="0.5" filter="url(#heroDropShadow)"/>
+
           <!-- ── Monitor ── -->
+          <!-- Isometric extrusion: right + bottom side faces -->
+          <polygon points="330,22 344,34 344,198 330,198" fill="url(#sideFace)" stroke="#00f5ff" stroke-width="1" opacity="0.9"/>
+          <polygon points="90,198 330,198 344,210 104,210" fill="#050514" stroke="#00f5ff" stroke-width="0.8" opacity="0.85"/>
+
           <rect class="monitor-frame" x="90" y="22" width="240" height="176" rx="12"
             fill="#08081e" stroke="#00f5ff" stroke-width="2.5" filter="url(#cyanGlow)"/>
+          <!-- Top edge highlight (light source, top-left) -->
+          <path d="M 96 26 L 324 26" stroke="#7fe9ff" stroke-width="1.8" opacity="0.4" stroke-linecap="round"/>
           <rect x="100" y="32" width="220" height="152" rx="7" fill="url(#screenGrad)"/>
           <!-- Screen scanlines -->
           <rect x="100" y="32" width="220" height="152" rx="7"
@@ -90,16 +109,28 @@
           <rect x="100" y="32" width="220" height="152" rx="7"
             fill="none" stroke="#00f5ff" stroke-width="0.8" opacity="0.25"/>
 
+          <!-- Monitor stand extrusion -->
+          <polygon points="224,196 224,226 234,232 234,202" fill="url(#sideFace)"/>
           <!-- Monitor stand -->
           <rect x="196" y="196" width="28" height="30" rx="4"
             fill="#0c0c24" stroke="#00f5ff" stroke-width="1.5"/>
+          <!-- Monitor base extrusion -->
+          <polygon points="260,223 260,234 270,240 270,229" fill="url(#sideFace)"/>
           <!-- Monitor base -->
           <rect x="160" y="223" width="100" height="11" rx="5"
             fill="#0c0c24" stroke="#00f5ff" stroke-width="1.5"/>
 
           <!-- ── Keyboard ── -->
+          <!-- Isometric extrusion: right + bottom (keycap thickness) -->
+          <polygon points="350,248 362,258 362,286 350,282" fill="url(#sideFace)" stroke="#ff0099" stroke-width="0.8" opacity="0.9"/>
+          <polygon points="70,282 350,282 362,292 82,292" fill="#180014" stroke="#ff0099" stroke-width="0.6" opacity="0.85"/>
+          <!-- Keyboard drop shadow -->
+          <rect x="75" y="290" width="270" height="10" rx="5" fill="#000" opacity="0.45" filter="url(#heroDropShadow)"/>
+
           <rect class="keyboard-glow" x="70" y="248" width="280" height="34" rx="9"
             fill="#0c0c24" stroke="#ff0099" stroke-width="1.8" filter="url(#magentaGlow)"/>
+          <!-- Top edge highlight -->
+          <path d="M 76 250 L 344 250" stroke="#ff88c7" stroke-width="1.4" opacity="0.35"/>
           <rect x="82"  y="256" width="256" height="6"  rx="2" fill="rgba(255,0,153,0.18)"/>
           <rect x="90"  y="266" width="240" height="6"  rx="2" fill="rgba(255,0,153,0.12)"/>
           <!-- Individual key hints -->
@@ -119,6 +150,8 @@
           </g>
 
           <!-- ── Desk surface ── -->
+          <!-- Desk right-edge extrusion -->
+          <polygon points="402,278 414,286 414,298 402,296" fill="#050510"/>
           <rect x="18" y="278" width="384" height="18" rx="6"
             fill="#0a0a22" stroke="#bd00ff" stroke-width="1.8"/>
           <!-- Desk edge glow -->
@@ -126,6 +159,7 @@
             fill="none" stroke="#bd00ff" stroke-width="0.5" opacity="0.4" filter="url(#softGlow)"/>
 
         </svg>
+       </div><!-- /bear-float -->
       </div><!-- /bear-wrapper -->
 
       <!-- Hero text -->
@@ -140,14 +174,14 @@
         </h1>
         <div class="hero-role-line">
           <span class="role-bracket">&lt;</span>
-          <span class="hero-role">Software Engineer</span>
+          <span class="hero-role">Engineer ⭐️ Builder ⭐️ Taste-maker</span>
           <span class="role-bracket"> /&gt;</span>
         </div>
         <p class="hero-desc">
-          Building products at the intersection of
-          <span class="hl-cyan">clean code</span> and
-          <span class="hl-magenta">impactful products</span>.
-          Passionate about creating, shipping, and iterating fast, keeping the beat alive!
+          What is Taste? For me, 
+          <span class="hl-cyan">Taste is Humanity</span> and
+          <span class="hl-magenta">Taste is spotting what to solve that matters for people and business</span>.
+          Let's build something together!
         </p>
         <div class="hero-actions">
           <a href="#experience" class="btn btn-primary">View My Journey</a>
@@ -181,27 +215,6 @@
         <!-- ── Vertical timeline ── -->
         <div class="timeline" id="timeline">
 
-          <!-- Ares Protein -->
-          <div class="tl-item">
-            <div class="tl-marker">
-              <div class="tl-dot"></div>
-              <div class="tl-line"></div>
-            </div>
-            <div class="tl-card">
-              <div class="tl-period">Present</div>
-              <div class="tl-company">Ares Protein</div>
-              <div class="tl-role">Software Engineer</div>
-              <p class="tl-desc">Architecting and shipping full-stack features for a high-growth protein supplement platform. Built performant UIs, scalable APIs, and data pipelines that power the product.</p>
-              <div class="tl-tags">
-                <span class="tag">React</span>
-                <span class="tag">TypeScript</span>
-                <span class="tag">Python</span>
-                <span class="tag">MySQL</span>
-                <span class="tag">AWS</span>
-              </div>
-            </div>
-          </div>
-
           <!-- Shopee -->
           <div class="tl-item">
             <div class="tl-marker">
@@ -211,11 +224,13 @@
             <div class="tl-card">
               <div class="tl-period">2025</div>
               <div class="tl-company">Shopee</div>
-              <div class="tl-role">Data Associate</div>
-              <p class="tl-desc">Developed automate internal CLI tools at one of Southeast Asia's largest e-commerce platforms. Turned complex datasets into business-driving insights.</p>
+              <div class="tl-role">AI Agent Engineer</div>
+              <p class="tl-desc">Architected a dual-track AI agent workflow across 11 production databases, hitting 98% accuracy at a 40-sec avg response and cutting 50% of data requests (~25 hrs/week saved). Scaled the playbook to 9 teams and shipped an automation pipeline saving ~23 hrs/month of manual review.</p>
               <div class="tl-tags">
+                <span class="tag">AI Agents</span>
                 <span class="tag">Python</span>
                 <span class="tag">SQL</span>
+                <span class="tag">REST API</span>
               </div>
             </div>
           </div>
@@ -229,13 +244,13 @@
             <div class="tl-card">
               <div class="tl-period">2024</div>
               <div class="tl-company">GatherEase AI</div>
-              <div class="tl-role">Co-founder</div>
-              <p class="tl-desc">Co-founded an AI-powered event management startup from zero. Led product vision, technical architecture, and the full development cycle from idea to launch.</p>
+              <div class="tl-role">Co-Founder, Front-End Engineer</div>
+              <p class="tl-desc">Co-founded a B2B event startup, owning client-facing operations end-to-end from business model through first-client delivery. Led the market-entry strategy — cutting operational latency by 1 hour and recruitment costs 50% — and designed/shipped the product's front end as sole engineer.</p>
               <div class="tl-tags">
-                <span class="tag">Python</span>
-                <span class="tag">FastAPI</span>
                 <span class="tag">React</span>
+                <span class="tag">Figma UX/UI</span>
                 <span class="tag">Startup</span>
+                <span class="tag">Client Ops</span>
               </div>
             </div>
           </div>
@@ -249,8 +264,8 @@
             <div class="tl-card">
               <div class="tl-period">2023</div>
               <div class="tl-company">PicCollage</div>
-              <div class="tl-role">Product Tester</div>
-              <p class="tl-desc">Conducted comprehensive product testing for a globally-used photo collage mobile app. Identified and documented bugs to improve app stability and user experience.</p>
+              <div class="tl-role">Quality Assurance Intern</div>
+              <p class="tl-desc">Partnered cross-functionally with PM/SWE/UI design to validate product changes for a 200M+ user base. Ran 150+ UX A/B tests, translating real user friction points into concrete product fixes.</p>
               <div class="tl-tags">
                 <span class="tag">QA Testing</span>
                 <span class="tag">Product Growth</span>
@@ -267,10 +282,10 @@
               <div class="tl-dot tl-dot--end"></div>
             </div>
             <div class="tl-card">
-              <div class="tl-period">2020 — 2022</div>
+              <div class="tl-period">2021</div>
               <div class="tl-company">University of New South Wales</div>
               <div class="tl-role">Student Consultant</div>
-              <p class="tl-desc">Delivered consulting projects across diverse industries as part of UNSW's industry engagement company.</p>
+              <p class="tl-desc">Delivered client-facing strategy engagements for 4 external organizations — market research, growth strategy, and SEO/website optimization.</p>
               <div class="client-list">
                 <span class="client-tag">🏛 Australian Maritime Museum</span>
                 <span class="client-tag">☕ Kua</span>
@@ -348,7 +363,7 @@
               <ellipse cx="40" cy="48" rx="4.5" ry="3.5" fill="#ff0099"/>
               <path d="M33,55 Q40,62 47,55" stroke="#fff" stroke-width="1.5" fill="none" stroke-linecap="round"/>
             </svg>
-            <p class="sidebar-quote">"Ship fast, learn faster"</p>
+            <p class="sidebar-quote">"Iterate fast, Ship impactful products"</p>
           </div>
 
         </aside>
@@ -384,7 +399,7 @@
       <div class="proj-grid" id="projGrid">
 
         <!-- ── Business ── -->
-        <article class="proj-card" data-category="business" data-project="edm-visualizer" data-link="https://github.com/SallyyLan/Google-Review-Analyzer">
+        <article class="proj-card" data-category="business" data-link="https://github.com/SallyyLan/Google-Review-Analyzer">
           <div class="card-glow card-glow-cyan"></div>
           <div class="card-top">
             <span class="card-emoji">📊</span>
@@ -405,48 +420,47 @@
 
 
 
-        <article class="proj-card" data-category="business" data-project="ares-protein">
+        <article class="proj-card" data-category="business" data-project="recruiting-agent" data-link="https://github.com/SallyyLan/recruiting_candidate_research_agent">
           <div class="card-glow card-glow-cyan"></div>
           <div class="card-top">
-            <span class="card-emoji">⚡</span>
-            <span class="card-badge">Production</span>
+            <span class="card-emoji">🕵️</span>
+            <span class="card-badge">AI Agent</span>
           </div>
-          <h2 class="card-title">Ares Protein Platform</h2>
-          <p class="card-desc">A production-ready, scalable e-commerce brand platform (serving 200+ clients) with responsive React/TypeScript front end, Django REST/MySQL backend, and CI/CD for reliable deployments.</p>
+          <h2 class="card-title">Recruiting Candidate Research Agent</h2>
+          <p class="card-desc">A research agent for a recruiting consultancy that self-directs tool use (web search, URL fetch) to turn a candidate list into schema-validated, client-ready briefings, flagging low-confidence data.</p>
           <div class="card-tags">
-            <span class="tag tag-cyan">Full-Stack</span>
-            <span class="tag tag-magenta">ScalablePlatform</span>
-            <span class="tag tag-purple">React/TypeScript</span>
-            <span class="tag tag-orange">DjangoREST</span>
+            <span class="tag tag-cyan">AI Agents</span>
+            <span class="tag tag-magenta">Tool Use</span>
+            <span class="tag tag-purple">Web Search</span>
+            <span class="tag tag-orange">Schema Validation</span>
           </div>
           <div class="card-footer">
-            <span class="card-cta-soon">Coming Soon!</span>
+            <span class="card-cta">View Details →</span>
           </div>
         </article>
 
-        <article class="proj-card" data-category="business" data-project="shopee-analytics">
+        <article class="proj-card" data-category="business" data-project="dual-track-protocol" data-link="https://github.com/SallyyLan/agent-context-architecture-dual_track">
           <div class="card-glow card-glow-cyan"></div>
           <div class="card-top">
-            <span class="card-emoji">📊</span>
-            <span class="card-badge">Data/BI Workflow</span>
+            <span class="card-emoji">🧩</span>
+            <span class="card-badge">Agent Architecture</span>
           </div>
-          <h2 class="card-title">Shopee Automated BI Workflow</h2>
-          <p class="card-desc">A Python CLI with SQL and database integration, leveraging Claude Code Skills to streamline cross-team workflows and boost operational efficiency</p>
+          <h2 class="card-title">Agent Context Architecture</h2>
+          <p class="card-desc">The reasoning architecture behind the Shopee self-serve agent — a dual-track protocol that decomposes business intent and verifies live schema in parallel.</p>
           <div class="card-tags">
-            <span class="tag tag-cyan">PythonCLI</span>
-            <span class="tag tag-magenta">SQL</span>
-            <span class="tag tag-purple">WorkflowEfficiency</span>
-            <span class="tag tag-orange">ClaudeCodeSkills</span>
+            <span class="tag tag-cyan">Agent Design</span>
+            <span class="tag tag-magenta">Dual-Track Protocol</span>
+            <span class="tag tag-purple">Schema Verification</span>
           </div>
           <div class="card-footer">
-            <span class="card-cta-soon">Coming Soon!</span>
+            <span class="card-cta">View Details →</span>
           </div>
         </article>
 
 
 
         <!-- ── Fun ── -->
-        <article class="proj-card proj-hidden" data-category="fun" data-project="bear-code">
+        <article class="proj-card proj-hidden" data-category="fun" data-project="exam-prep-agent">
           <div class="card-glow card-glow-magenta"></div>
           <div class="card-top">
             <span class="card-emoji">📝</span>
@@ -467,7 +481,7 @@
 
 
 
-        <article class="proj-card proj-hidden" data-category="fun" data-project="bear-code" data-link="https://github.com/SallyyLan/AI_Agent_NewsUpdater">
+        <article class="proj-card proj-hidden" data-category="fun" data-project="ai-news-updater" data-link="https://github.com/SallyyLan/AI_Agent_NewsUpdater">
           <div class="card-glow card-glow-magenta"></div>
           <div class="card-top">
             <span class="card-emoji">🤖</span>
@@ -487,27 +501,6 @@
         </article>
 
 
-
-        <article class="proj-card proj-hidden" data-category="fun" data-project="neon-todo">
-          <div class="card-glow card-glow-magenta"></div>
-          <div class="card-top">
-            <span class="card-emoji">🎤</span>
-            <span class="card-badge card-badge-fun">Side Project</span>
-          </div>
-          <h2 class="card-title">Voxia</h2>
-          <p class="card-desc">A cross-accent Mandarin speech recognition system to improve communication understanding, accuracy and fluency</p>
-          <div class="card-tags">
-            <span class="tag tag-cyan">Python</span>
-            <span class="tag tag-magenta">FastAPI</span>
-            <span class="tag tag-green">OpenAI Whisper ASR</span>
-            <span class="tag tag-orange">Speech Recognition</span>
-          </div>
-          <div class="card-footer">
-            <span class="card-cta-soon">Coming Soon!</span>
-          </div>
-        </article>
-
-
       </div><!-- /proj-grid -->
 
       <!-- ── CTA ── -->
@@ -516,7 +509,7 @@
         <p class="cta-eyebrow">Ready to build something amazing?</p>
         <h3 class="cta-heading">Let's Create Together</h3>
         <p class="cta-body">Whether it's a startup idea, a side project, or a full product, I'm always down to ship something cool!</p>
-        <a href="mailto:your@email.com" class="btn btn-primary btn-glow">
+        <a href="mailto:shihhan6@gmail.com" class="btn btn-primary btn-glow">
           Get In Touch <span class="btn-arrow">→</span>
         </a>
       </div>
@@ -528,6 +521,6 @@
   <!-- ── Scripts ── -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <script src="js/main.js"></script>
+  <script src="projects/js/main.js"></script>
 </body>
 </html>

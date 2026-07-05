@@ -265,6 +265,7 @@ a { text-decoration: none; color: inherit; }
   display: flex;
   justify-content: center;
   align-items: center;
+  perspective: 900px;
 }
 
 .bear-glow-ring {
@@ -276,12 +277,22 @@ a { text-decoration: none; color: inherit; }
   animation: pulseRing 3.5s ease-in-out infinite;
 }
 
+/* Vertical float lives on its own wrapper so it doesn't fight with the
+   JS-driven rotateX/rotateY tilt on .bear-svg (both would otherwise
+   overwrite the same `transform` property every frame). */
+.bear-float {
+  width: 100%;
+  max-width: 460px;
+  animation: bearFloat 4.5s ease-in-out infinite;
+}
+
 .bear-svg {
   width: 100%;
   max-width: 460px;
   height: auto;
   filter: drop-shadow(0 0 24px rgba(0,245,255,.14));
-  animation: bearFloat 4.5s ease-in-out infinite;
+  transform-style: preserve-3d;
+  will-change: transform;
 }
 
 /* Bear sub-animations */
@@ -972,6 +983,7 @@ a { text-decoration: none; color: inherit; }
     padding: 100px 0 60px;
   }
   .bear-wrapper { order: -1; }
+  .bear-float   { max-width: 300px; }
   .bear-svg     { max-width: 300px; }
   .hero-desc    { margin: 0 auto; }
   .hero-actions { justify-content: center; }

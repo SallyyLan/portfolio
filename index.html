@@ -3,543 +3,308 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sally Lan| Full-Stack SDE Portfolio</title>
+  <meta name="description" content="Sally Lan — Applied AI & Forward Deployed Engineer. Three years reading business context at Shopee and a startup's first client, before it ever becomes a ticket." />
+  <title>Sally Lan | Applied AI &amp; Forward Deployed Engineer</title>
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
 
-  <!-- ── Navigation dots ── -->
-  <nav class="nav-dots" aria-label="Page sections">
-    <a href="#hero"       class="nav-dot active" data-label="Home"></a>
-    <a href="#experience" class="nav-dot"         data-label="Experience"></a>
-    <a href="#projects"   class="nav-dot"         data-label="Projects"></a>
-  </nav>
+<canvas id="fog"></canvas>
+<div class="progress" id="progress"></div>
 
-  <!-- ══════════════════════════════════════════
-       SECTION 1 — HERO
-  ══════════════════════════════════════════ -->
-  <section id="hero" class="section section--hero">
-    <div class="bg-grid"></div>
-    <div class="bg-scanlines"></div>
+<nav><div class="wrap"><a href="#top" class="wordmark">Sally Lan</a><div class="navlinks"><a href="#projects">Projects</a><a href="mailto:shihhan6@gmail.com">Contact</a></div></div></nav>
 
-    <div class="hero-layout">
+<div class="hero-ring" id="heroRing" aria-hidden="true"></div>
 
-      <!-- Computer setup -->
-      <div class="bear-wrapper" id="bearWrapper">
-       <div class="bear-float">
-        <svg class="bear-svg" id="bearSvg" viewBox="0 0 420 310" xmlns="http://www.w3.org/2000/svg" aria-label="Neon computer setup with code on screen, rendered in isometric 3D">
-          <defs>
-            <filter id="cyanGlow" x="-30%" y="-30%" width="160%" height="160%">
-              <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur"/>
-              <feColorMatrix in="blur" type="matrix"
-                values="0 0 0 0 0  0 0.96 0.98 0 1  0 0 1 0 1  0 0 0 16 -6"
-                result="glow"/>
-              <feMerge><feMergeNode in="glow"/><feMergeNode in="SourceGraphic"/></feMerge>
-            </filter>
-            <filter id="magentaGlow" x="-30%" y="-30%" width="160%" height="160%">
-              <feGaussianBlur in="SourceGraphic" stdDeviation="2.5" result="blur"/>
-              <feColorMatrix in="blur" type="matrix"
-                values="1 0 0 0 1  0 0 0 0 0  0 0 0.6 0 0.6  0 0 0 14 -5"
-                result="glow"/>
-              <feMerge><feMergeNode in="glow"/><feMergeNode in="SourceGraphic"/></feMerge>
-            </filter>
-            <filter id="softGlow" x="-40%" y="-40%" width="180%" height="180%">
-              <feGaussianBlur stdDeviation="5" result="blur"/>
-              <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-            </filter>
-            <filter id="heroDropShadow" x="-50%" y="-50%" width="200%" height="200%">
-              <feGaussianBlur stdDeviation="8"/>
-            </filter>
-            <radialGradient id="screenGrad" cx="50%" cy="50%" r="50%">
-              <stop offset="0%"   stop-color="#0d2040"/>
-              <stop offset="100%" stop-color="#030310"/>
-            </radialGradient>
-            <radialGradient id="screenLight" cx="50%" cy="50%" r="50%">
-              <stop offset="0%"   stop-color="rgba(0,245,255,0.04)"/>
-              <stop offset="100%" stop-color="transparent"/>
-            </radialGradient>
-            <linearGradient id="sideFace" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stop-color="#020208"/>
-              <stop offset="100%" stop-color="#0a0a20"/>
-            </linearGradient>
-          </defs>
+<div class="boo-anchor" id="booAnchor" aria-hidden="true">
+  <div class="boo-bob">
+    <svg width="72" height="72" viewBox="0 0 100 100">
+      <path d="M50 8 C74 8 90 28 90 50 C90 66 84 74 84 74 L84 86 L74 78 L64 88 L54 78 L46 88 L36 78 L26 86 L26 74 C26 74 10 66 10 50 C10 28 26 8 50 8 Z" fill="var(--panel)" stroke="var(--ink-faint)" stroke-width="2.5"/>
+      <g class="boo-eyes">
+        <ellipse cx="38" cy="46" rx="7" ry="9" fill="var(--ink)"/>
+        <ellipse cx="64" cy="46" rx="7" ry="9" fill="var(--ink)"/>
+      </g>
+      <path d="M40 62 Q50 70 60 62" stroke="var(--ink)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    </svg>
+  </div>
+</div>
 
-          <!-- Ambient glow behind monitor -->
-          <ellipse cx="210" cy="110" rx="160" ry="95" fill="#00f5ff" opacity="0.08" filter="url(#heroDropShadow)"/>
+<div class="screen s1" id="top">
+  <div>
+    <div class="eyebrow">Applied AI · Forward Deployed Engineer</div>
+    <h1 id="heroHeadline"><span class="sc">The problem</span><br><span class="sc">isn't </span><em><span class="sc">the code.</span></em></h1>
+    <div class="sub">Sally Lan — three years reading business context at Shopee and a startup's first client, before it ever becomes a ticket.</div>
+  </div>
+  <div class="scrolldown"><span>Scroll</span><span class="ln"></span></div>
+</div>
 
-          <!-- Monitor drop shadow -->
-          <rect x="95" y="210" width="230" height="18" rx="9" fill="#000" opacity="0.5" filter="url(#heroDropShadow)"/>
+<div class="screen">
+  <p class="blur-reveal reveal-el"><span class="dim">Everyone can generate code now.</span><br><span>Almost no one can tell you</span> <span class="accent">which problem</span> <span>is worth solving.</span></p>
+</div>
 
-          <!-- ── Monitor ── -->
-          <!-- Isometric extrusion: right + bottom side faces -->
-          <polygon points="330,22 344,34 344,198 330,198" fill="url(#sideFace)" stroke="#00f5ff" stroke-width="1" opacity="0.9"/>
-          <polygon points="90,198 330,198 344,210 104,210" fill="#050514" stroke="#00f5ff" stroke-width="0.8" opacity="0.85"/>
+<section class="chapter" id="chapterOne">
+  <div class="wrap">
+    <div class="chapter-num reveal-el">Chapter One — Where I've Stood</div>
+    <h2 class="reveal-el">I've spent three years on the side of the table where that decision actually gets made.</h2>
+    <p class="reveal-el">Not in a lab. Inside Shopee's marketing operations, wiring agents into the workflows real teams run daily. Inside a two-person startup's first paying client, where the front end and the relationship were the same job. <strong>Close enough to feel the friction before anyone writes a ticket for it.</strong></p>
+  </div>
+</section>
 
-          <rect class="monitor-frame" x="90" y="22" width="240" height="176" rx="12"
-            fill="#08081e" stroke="#00f5ff" stroke-width="2.5" filter="url(#cyanGlow)"/>
-          <!-- Top edge highlight (light source, top-left) -->
-          <path d="M 96 26 L 324 26" stroke="#7fe9ff" stroke-width="1.8" opacity="0.4" stroke-linecap="round"/>
-          <rect x="100" y="32" width="220" height="152" rx="7" fill="url(#screenGrad)"/>
-          <!-- Screen scanlines -->
-          <rect x="100" y="32" width="220" height="152" rx="7"
-            fill="url(#screenLight)" opacity="0.8"/>
+<div class="rule wrap"></div>
 
-          <!-- Code on screen -->
-          <g font-family="monospace" font-size="11.5">
-            <text x="115" y="58"  fill="#bd00ff">const</text>
-            <text x="152" y="58"  fill="#00f5ff"> Sally</text>
-            <text x="192" y="58"  fill="#ffffff"> = () =&gt; &#123;</text>
-            <text x="115" y="78"  fill="#ff0099">  ship</text>
-            <text x="150" y="78"  fill="#ffffff">(</text>
-            <text x="155" y="78"  fill="#39ff14">Products</text>
-            <text x="212" y="78"  fill="#ffffff">);</text>
-            <text x="115" y="98"  fill="#ff6600">  dance</text>
-            <text x="158" y="98"  fill="#ffffff">(</text>
-            <text x="163" y="98"  fill="#39ff14">toEDM</text>
-            <text x="203" y="98"  fill="#ffffff">);</text>
-            <text x="115" y="118" fill="#00f5ff">  build</text>
-            <text x="157" y="118" fill="#ffffff">(</text>
-            <text x="162" y="118" fill="#39ff14">future</text>
-            <text x="202" y="118" fill="#ffffff">);</text>
-            <text x="115" y="138" fill="#ffffff">&#125;</text>
-            <!-- blinking cursor -->
-            <rect class="cursor-blink" x="115" y="148" width="7" height="13" fill="#00f5ff" rx="1"/>
-          </g>
-          <!-- Screen border glow -->
-          <rect x="100" y="32" width="220" height="152" rx="7"
-            fill="none" stroke="#00f5ff" stroke-width="0.8" opacity="0.25"/>
-
-          <!-- Monitor stand extrusion -->
-          <polygon points="224,196 224,226 234,232 234,202" fill="url(#sideFace)"/>
-          <!-- Monitor stand -->
-          <rect x="196" y="196" width="28" height="30" rx="4"
-            fill="#0c0c24" stroke="#00f5ff" stroke-width="1.5"/>
-          <!-- Monitor base extrusion -->
-          <polygon points="260,223 260,234 270,240 270,229" fill="url(#sideFace)"/>
-          <!-- Monitor base -->
-          <rect x="160" y="223" width="100" height="11" rx="5"
-            fill="#0c0c24" stroke="#00f5ff" stroke-width="1.5"/>
-
-          <!-- ── Keyboard ── -->
-          <!-- Isometric extrusion: right + bottom (keycap thickness) -->
-          <polygon points="350,248 362,258 362,286 350,282" fill="url(#sideFace)" stroke="#ff0099" stroke-width="0.8" opacity="0.9"/>
-          <polygon points="70,282 350,282 362,292 82,292" fill="#180014" stroke="#ff0099" stroke-width="0.6" opacity="0.85"/>
-          <!-- Keyboard drop shadow -->
-          <rect x="75" y="290" width="270" height="10" rx="5" fill="#000" opacity="0.45" filter="url(#heroDropShadow)"/>
-
-          <rect class="keyboard-glow" x="70" y="248" width="280" height="34" rx="9"
-            fill="#0c0c24" stroke="#ff0099" stroke-width="1.8" filter="url(#magentaGlow)"/>
-          <!-- Top edge highlight -->
-          <path d="M 76 250 L 344 250" stroke="#ff88c7" stroke-width="1.4" opacity="0.35"/>
-          <rect x="82"  y="256" width="256" height="6"  rx="2" fill="rgba(255,0,153,0.18)"/>
-          <rect x="90"  y="266" width="240" height="6"  rx="2" fill="rgba(255,0,153,0.12)"/>
-          <!-- Individual key hints -->
-          <g fill="rgba(255,0,153,0.25)">
-            <rect x="82"  y="256" width="16" height="6" rx="1"/>
-            <rect x="102" y="256" width="16" height="6" rx="1"/>
-            <rect x="122" y="256" width="16" height="6" rx="1"/>
-            <rect x="142" y="256" width="16" height="6" rx="1"/>
-            <rect x="162" y="256" width="16" height="6" rx="1"/>
-            <rect x="182" y="256" width="16" height="6" rx="1"/>
-            <rect x="202" y="256" width="16" height="6" rx="1"/>
-            <rect x="222" y="256" width="16" height="6" rx="1"/>
-            <rect x="242" y="256" width="16" height="6" rx="1"/>
-            <rect x="262" y="256" width="16" height="6" rx="1"/>
-            <rect x="282" y="256" width="16" height="6" rx="1"/>
-            <rect x="302" y="256" width="46" height="6" rx="1"/>
-          </g>
-
-          <!-- ── Desk surface ── -->
-          <!-- Desk right-edge extrusion -->
-          <polygon points="402,278 414,286 414,298 402,296" fill="#050510"/>
-          <rect x="18" y="278" width="384" height="18" rx="6"
-            fill="#0a0a22" stroke="#bd00ff" stroke-width="1.8"/>
-          <!-- Desk edge glow -->
-          <rect x="18" y="278" width="384" height="18" rx="6"
-            fill="none" stroke="#bd00ff" stroke-width="0.5" opacity="0.4" filter="url(#softGlow)"/>
-
-        </svg>
-       </div><!-- /bear-float -->
-      </div><!-- /bear-wrapper -->
-
-      <!-- Hero text -->
-      <div class="hero-text">
-        <div class="hero-badge">
-          <span class="badge-dot"></span>
-          Available for opportunities
-        </div>
-        <p class="hero-greeting">Hello, I'm</p>
-        <h1 class="hero-name">
-          <span class="name-line">Sally Lan</span>
-        </h1>
-        <div class="hero-role-line">
-          <span class="role-bracket">&lt;</span>
-          <span class="hero-role">Engineer ⭐️ Builder ⭐️ Taste-maker</span>
-          <span class="role-bracket"> /&gt;</span>
-        </div>
-        <p class="hero-desc">
-          What is Taste? For me, 
-          <span class="hl-cyan">Taste is Humanity</span> and
-          <span class="hl-magenta">Taste is spotting what to solve that matters for people and business</span>.
-          Let's build something together!
-        </p>
-        <div class="hero-actions">
-          <a href="#experience" class="btn btn-primary">View My Journey</a>
-          <a href="#projects"   class="btn btn-outline">See My Work</a>
-        </div>
-      </div>
-    </div><!-- /hero-layout -->
-
-    <div class="scroll-indicator">
-      <div class="scroll-line"></div>
-      <span>SCROLL</span>
+<section class="proof">
+  <div class="wrap">
+    <div class="proof-head">
+      <div class="chapter-num reveal-el">Chapter Two — What That Produced</div>
+      <h2 class="reveal-el" style="font-family:var(--display); font-weight:400; font-size:clamp(28px,3.6vw,42px); margin:0; letter-spacing:-0.015em;">Four numbers from the last twelve months.</h2>
     </div>
-  </section>
+    <div class="cards">
+      <div class="pcard reveal-el"><div class="num" data-count="98" data-suffix="%">0%</div><div class="lbl">Agent accuracy</div><p>Across 11 marketing datasets at Shopee — the workflow teams now run daily.</p></div>
+      <div class="pcard reveal-el"><div class="num" data-count="9" data-suffix="">0</div><div class="lbl">Teams adopted</div><p>My playbooks cut rollout time from a week to a day, saving ~40 engineer-days.</p></div>
+      <div class="pcard reveal-el"><div class="num" data-count="50" data-suffix="%" data-prefix="−">0%</div><div class="lbl">Request volume, recruitment cost</div><p>One outcome at Shopee, one at GatherEase — same pattern, different industry.</p></div>
+      <div class="pcard reveal-el"><div class="num" data-count="150" data-suffix="+">0</div><div class="lbl">UX points tested</div><p>At PicCollage, on a product 200 million people used.</p></div>
+    </div>
+  </div>
+</section>
 
+<div class="rule wrap"></div>
 
-  <!-- ══════════════════════════════════════════
-       SECTION 2 — EXPERIENCE
-  ══════════════════════════════════════════ -->
-  <section id="experience" class="section section--experience">
-    <div class="bg-grid bg-grid-dim"></div>
+<section class="chapter" style="padding-bottom:60px;">
+  <div class="wrap">
+    <div class="chapter-num reveal-el">Chapter Three — The Path Here</div>
+    <h2 class="reveal-el" style="font-family:var(--display); font-weight:400; font-size:clamp(28px,3.6vw,42px); margin:0 0 44px; letter-spacing:-0.015em; max-width:620px;">Four roles. Click one for what it actually taught me.</h2>
 
-    <div class="exp-layout">
-
-      <div class="section-header">
-        <span class="section-label">02 / Journey</span>
-        <h2 class="section-title">Experience<span class="title-dot">.</span></h2>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-marker"><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-card reveal-el" data-case="shopee" tabindex="0" role="button" aria-label="Open Shopee case study">
+          <div class="tl-period">2025</div>
+          <div class="tl-company">Sea / Shopee</div>
+          <div class="tl-role">Applied AI Agent Engineer</div>
+          <p class="tl-desc">Architected a dual-track agent workflow across 11 MKT datasets at 98% accuracy, cutting request volume 50%. Playbooks adopted by 9 teams.</p>
+          <div class="tl-tags"><span>AI Agents</span><span>Python</span><span>SQL</span><span>REST API</span></div>
+          <div class="tl-cta">→ read the case study</div>
+        </div>
       </div>
 
-      <div class="exp-content">
-
-        <!-- ── Vertical timeline ── -->
-        <div class="timeline" id="timeline">
-
-          <!-- Shopee -->
-          <div class="tl-item">
-            <div class="tl-marker">
-              <div class="tl-dot"></div>
-              <div class="tl-line"></div>
-            </div>
-            <div class="tl-card">
-              <div class="tl-period">2025</div>
-              <div class="tl-company">Shopee</div>
-              <div class="tl-role">AI Agent Engineer</div>
-              <p class="tl-desc">Architected a dual-track AI agent workflow across 11 production databases, hitting 98% accuracy at a 40-sec avg response and cutting 50% of data requests (~25 hrs/week saved). Scaled the playbook to 9 teams and shipped an automation pipeline saving ~23 hrs/month of manual review.</p>
-              <div class="tl-tags">
-                <span class="tag">AI Agents</span>
-                <span class="tag">Python</span>
-                <span class="tag">SQL</span>
-                <span class="tag">REST API</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- GatherEase AI -->
-          <div class="tl-item">
-            <div class="tl-marker">
-              <div class="tl-dot"></div>
-              <div class="tl-line"></div>
-            </div>
-            <div class="tl-card">
-              <div class="tl-period">2024</div>
-              <div class="tl-company">GatherEase AI</div>
-              <div class="tl-role">Co-Founder, Front-End Engineer</div>
-              <p class="tl-desc">Co-founded a B2B event startup, owning client-facing operations end-to-end from business model through first-client delivery. Led the market-entry strategy — cutting operational latency by 1 hour and recruitment costs 50% — and designed/shipped the product's front end as sole engineer.</p>
-              <div class="tl-tags">
-                <span class="tag">React</span>
-                <span class="tag">Figma UX/UI</span>
-                <span class="tag">Startup</span>
-                <span class="tag">Client Ops</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- PicCollage -->
-          <div class="tl-item">
-            <div class="tl-marker">
-              <div class="tl-dot"></div>
-              <div class="tl-line"></div>
-            </div>
-            <div class="tl-card">
-              <div class="tl-period">2023</div>
-              <div class="tl-company">PicCollage</div>
-              <div class="tl-role">Quality Assurance Intern</div>
-              <p class="tl-desc">Partnered cross-functionally with PM/SWE/UI design to validate product changes for a 200M+ user base. Ran 150+ UX A/B tests, translating real user friction points into concrete product fixes.</p>
-              <div class="tl-tags">
-                <span class="tag">QA Testing</span>
-                <span class="tag">Product Growth</span>
-                <span class="tag">Mobile</span>
-                <span class="tag">UX/UI Research</span>
-                <span class="tag">Cross Collaboration</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- UNSW -->
-          <div class="tl-item tl-item--last">
-            <div class="tl-marker">
-              <div class="tl-dot tl-dot--end"></div>
-            </div>
-            <div class="tl-card">
-              <div class="tl-period">2021</div>
-              <div class="tl-company">University of New South Wales</div>
-              <div class="tl-role">Student Consultant</div>
-              <p class="tl-desc">Delivered client-facing strategy engagements for 4 external organizations — market research, growth strategy, and SEO/website optimization.</p>
-              <div class="client-list">
-                <span class="client-tag">🏛 Australian Maritime Museum</span>
-                <span class="client-tag">☕ Kua</span>
-                <span class="client-tag">🏆 Australian International Sports</span>
-                <span class="client-tag">💼 Grant Thornton</span>
-              </div>
-            </div>
-          </div>
-
-        </div><!-- /timeline -->
-
-        <!-- ── Social sidebar ── -->
-        <aside class="social-sidebar">
-          <p class="social-label">Find me at</p>
-          <div class="social-list">
-
-            <!-- LinkedIn -->
-            <a href="https://www.linkedin.com/in/sallylan" target="_blank" rel="noopener" class="social-link" id="linkedinLink">
-              <div class="social-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/>
-                  <rect x="2" y="9" width="4" height="12"/>
-                  <circle cx="4" cy="4" r="2"/>
-                </svg>
-              </div>
-              <div class="social-info">
-                <span class="social-name">LinkedIn</span>
-                <span class="social-hint">Connect with me</span>
-              </div>
-              <span class="social-arrow">→</span>
-            </a>
-
-            <!-- GitHub -->
-            <a href="https://github.com/SallyyLan" target="_blank" rel="noopener" class="social-link" id="githubLink">
-              <div class="social-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
-                </svg>
-              </div>
-              <div class="social-info">
-                <span class="social-name">GitHub</span>
-                <span class="social-hint">See my Code World</span>
-              </div>
-              <span class="social-arrow">→</span>
-            </a>
-
-            <!-- Gmail -->
-            <a href="mailto:shihhan6@gmail.com" class="social-link" id="gmailLink">
-              <div class="social-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                  <polyline points="22,6 12,13 2,6"/>
-                </svg>
-              </div>
-              <div class="social-info">
-                <span class="social-name">Gmail</span>
-                <span class="social-hint">Drop me a message</span>
-              </div>
-              <span class="social-arrow">→</span>
-            </a>
-
-          </div><!-- /social-list -->
-
-          <!-- Mini bear decoration -->
-          <div class="sidebar-bear-card">
-            <svg class="mini-bear-svg" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="24" cy="20" r="11" fill="#0f0f28" stroke="#00f5ff" stroke-width="1.5"/>
-              <circle cx="56" cy="20" r="11" fill="#0f0f28" stroke="#00f5ff" stroke-width="1.5"/>
-              <circle cx="24" cy="20" r="6"  fill="#ff0099" opacity="0.75"/>
-              <circle cx="56" cy="20" r="6"  fill="#ff0099" opacity="0.75"/>
-              <rect x="14" y="18" width="52" height="46" rx="14" fill="#0f0f28" stroke="#00f5ff" stroke-width="1.5"/>
-              <rect x="22" y="30" width="15" height="12" rx="4" fill="none" stroke="#00f5ff" stroke-width="1.5"/>
-              <rect x="43" y="30" width="15" height="12" rx="4" fill="none" stroke="#00f5ff" stroke-width="1.5"/>
-              <line x1="37" y1="36" x2="43" y2="36" stroke="#00f5ff" stroke-width="1.5"/>
-              <ellipse cx="40" cy="48" rx="4.5" ry="3.5" fill="#ff0099"/>
-              <path d="M33,55 Q40,62 47,55" stroke="#fff" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-            </svg>
-            <p class="sidebar-quote">"Iterate fast, Ship impactful products"</p>
-          </div>
-
-        </aside>
-      </div><!-- /exp-content -->
-    </div><!-- /exp-layout -->
-  </section>
-
-
-  <!-- ══════════════════════════════════════════
-       SECTION 3 — PROJECTS
-  ══════════════════════════════════════════ -->
-  <section id="projects" class="section section--projects">
-    <div class="bg-grid bg-grid-purple"></div>
-
-    <div class="proj-layout">
-
-      <div class="section-header">
-        <span class="section-label">03 / Creation</span>
-        <h2 class="section-title">Projects<span class="title-dot title-dot--purple">.</span></h2>
+      <div class="tl-item">
+        <div class="tl-marker"><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-card reveal-el" data-case="gatherease" tabindex="0" role="button" aria-label="Open GatherEase case study">
+          <div class="tl-period">2024</div>
+          <div class="tl-company">GatherEase AI</div>
+          <div class="tl-role">Co-Founder, Front-End Engineer</div>
+          <p class="tl-desc">Owned the client-facing operational workflow end to end, from business model through first-client delivery — and designed/shipped the front end solo.</p>
+          <div class="tl-tags"><span>React</span><span>Figma UX/UI</span><span>Startup</span><span>Client Ops</span></div>
+          <div class="tl-cta">→ read the case study</div>
+        </div>
       </div>
 
-      <!-- Category toggle -->
-      <div class="proj-toggle" id="projToggle">
-        <button class="toggle-btn toggle-active" data-filter="business">
-          <span>💼</span> Business Projects
-        </button>
-        <button class="toggle-btn" data-filter="fun">
-          <span>🎮</span> Side Projects
-        </button>
+      <div class="tl-item">
+        <div class="tl-marker"><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-card reveal-el" data-case="piccollage" tabindex="0" role="button" aria-label="Open PicCollage case study">
+          <div class="tl-period">2023</div>
+          <div class="tl-company">PicCollage</div>
+          <div class="tl-role">Quality Assurance Intern</div>
+          <p class="tl-desc">Partnered cross-functionally with PM/SWE/UI to validate product changes for a 200M+ user base. Ran 150+ UX A/B tests.</p>
+          <div class="tl-tags"><span>QA Testing</span><span>Product Growth</span><span>UX/UI Research</span></div>
+          <div class="tl-cta">→ read the case study</div>
+        </div>
       </div>
 
-      <!-- Cards grid -->
-      <div class="proj-grid" id="projGrid">
-
-        <!-- ── Business ── -->
-        <article class="proj-card" data-category="business" data-link="https://github.com/SallyyLan/Google-Review-Analyzer">
-          <div class="card-glow card-glow-cyan"></div>
-          <div class="card-top">
-            <span class="card-emoji">📊</span>
-            <span class="card-badge">Review Analytics</span>
+      <div class="tl-item">
+        <div class="tl-marker"><div class="tl-dot"></div></div>
+        <div class="tl-card reveal-el" data-case="unsw" tabindex="0" role="button" aria-label="Open UNSW case study">
+          <div class="tl-period">2021</div>
+          <div class="tl-company">University of New South Wales</div>
+          <div class="tl-role">Student Consultant</div>
+          <p class="tl-desc">Delivered client-facing strategy engagements for 4 external organizations — market research, growth strategy, and SEO/website optimization.</p>
+          <div class="client-list">
+            <span class="client-tag">🏛 Australian Maritime Museum</span>
+            <span class="client-tag">☕ Kua</span>
+            <span class="client-tag">🏆 Australian International Sports</span>
+            <span class="client-tag">💼 Grant Thornton</span>
           </div>
-          <h2 class="card-title">Google Reviews Analyzer</h2>
-          <p class="card-desc">An async Flask + LLM web app that analyzes reviews into sentiment and thematic dashboards, prioritizing actionable insights for SMB decision-making</p>
-          <div class="card-tags">
-            <span class="tag tag-cyan">Flask</span>
-            <span class="tag tag-magenta">LLM</span>
-            <span class="tag tag-purple">Sentiment Analysis/Topic Modeling</span>
-            <span class="tag tag-orange">SMB Insights</span>
-          </div>
-          <div class="card-footer">
-            <span class="card-cta">View Details →</span>
-          </div>
-        </article>
-
-
-
-        <article class="proj-card" data-category="business" data-project="recruiting-agent" data-link="https://github.com/SallyyLan/recruiting_candidate_research_agent">
-          <div class="card-glow card-glow-cyan"></div>
-          <div class="card-top">
-            <span class="card-emoji">🕵️</span>
-            <span class="card-badge">AI Agent</span>
-          </div>
-          <h2 class="card-title">Recruiting Candidate Research Agent</h2>
-          <p class="card-desc">A research agent for a recruiting consultancy that self-directs tool use (web search, URL fetch) to turn a candidate list into schema-validated, client-ready briefings, flagging low-confidence data.</p>
-          <div class="card-tags">
-            <span class="tag tag-cyan">AI Agents</span>
-            <span class="tag tag-magenta">Tool Use</span>
-            <span class="tag tag-purple">Web Search</span>
-            <span class="tag tag-orange">Schema Validation</span>
-          </div>
-          <div class="card-footer">
-            <span class="card-cta">View Details →</span>
-          </div>
-        </article>
-
-        <article class="proj-card" data-category="business" data-project="dual-track-protocol" data-link="https://github.com/SallyyLan/agent-context-architecture-dual_track">
-          <div class="card-glow card-glow-cyan"></div>
-          <div class="card-top">
-            <span class="card-emoji">🧩</span>
-            <span class="card-badge">Agent Architecture</span>
-          </div>
-          <h2 class="card-title">Agent Context Architecture</h2>
-          <p class="card-desc">The reasoning architecture behind the Shopee self-serve agent — a dual-track protocol that decomposes business intent and verifies live schema in parallel.</p>
-          <div class="card-tags">
-            <span class="tag tag-cyan">Agent Design</span>
-            <span class="tag tag-magenta">Dual-Track Protocol</span>
-            <span class="tag tag-purple">Schema Verification</span>
-          </div>
-          <div class="card-footer">
-            <span class="card-cta">View Details →</span>
-          </div>
-        </article>
-
-        <article class="proj-card" data-category="business" data-project="shipaudit" data-link="https://github.com/SallyyLan/cuz_ShippingAudit_automation_pipeline">
-          <div class="card-glow card-glow-cyan"></div>
-          <div class="card-top">
-            <span class="card-emoji">📦</span>
-            <span class="card-badge">Audit Automation Pipeline</span>
-          </div>
-          <h2 class="card-title">ShipAudit — Shopee Automation Pipeline</h2>
-          <p class="card-desc">A production internal tool that verifies e-commerce shipping-promotion tickets against baseline spreadsheets before campaigns go live — rebuilt over four iterations from a 15-20 min LLM field-by-field checker into a deterministic Python engine, fronted by a Claude Code agent for orchestration and reporting.</p>
-          <div class="card-tags">
-            <span class="tag tag-cyan">Python</span>
-            <span class="tag tag-magenta">Config-Driven Rules Engine</span>
-            <span class="tag tag-purple">Claude Code Agent</span>
-            <span class="tag tag-orange">Deterministic Pipeline</span>
-          </div>
-          <div class="card-footer">
-            <span class="card-cta">View Details →</span>
-          </div>
-        </article>
-
-
-
-        <!-- ── Fun ── -->
-        <article class="proj-card proj-hidden" data-category="fun" data-project="exam-prep-agent">
-          <div class="card-glow card-glow-magenta"></div>
-          <div class="card-top">
-            <span class="card-emoji">📝</span>
-            <span class="card-badge card-badge-fun">Side Project</span>
-          </div>
-          <h2 class="card-title">Last Min Exam Prep, Hackathon Award🎖️</h2>
-          <p class="card-desc">Web App for students priority queuing to auto-generate prioritized practice exams from their past exams and homework</p>
-          <div class="card-tags">
-            <span class="tag tag-cyan">React</span>
-            <span class="tag tag-magenta">FastAPI</span>
-            <span class="tag tag-purple">HuggingFace (Gemini, OpenAI)</span>
-            <span class="tag tag-orange">EdTech</span>
-          </div>
-          <div class="card-footer">
-            <span class="card-cta">View Details →</span>
-          </div>
-        </article>
-
-
-
-        <article class="proj-card proj-hidden" data-category="fun" data-project="ai-news-updater" data-link="https://github.com/SallyyLan/AI_Agent_NewsUpdater">
-          <div class="card-glow card-glow-magenta"></div>
-          <div class="card-top">
-            <span class="card-emoji">🤖</span>
-            <span class="card-badge card-badge-fun">Side Project</span>
-          </div>
-          <h2 class="card-title">AI Agent News Updater</h2>
-          <p class="card-desc">Claude Code Agents to automate AI news pipeline: ingestion, scoring, summarization, and email delivery</p>
-          <div class="card-tags">
-            <span class="tag tag-cyan">Claude Code Agents / Skills</span>
-            <span class="tag tag-magenta">Rss ingestion</span>
-            <span class="tag tag-purple">Automation</span>
-            <span class="tag tag-orange">Github Actions</span>
-          </div>
-          <div class="card-footer">
-            <span class="card-cta">View Details →</span>
-          </div>
-        </article>
-
-
-      </div><!-- /proj-grid -->
-
-      <!-- ── CTA ── -->
-      <div class="proj-cta">
-        <div class="cta-divider"></div>
-        <p class="cta-eyebrow">Ready to build something amazing?</p>
-        <h3 class="cta-heading">Let's Create Together</h3>
-        <p class="cta-body">Whether it's a startup idea, a side project, or a full product, I'm always down to ship something cool!</p>
-        <a href="mailto:shihhan6@gmail.com" class="btn btn-primary btn-glow">
-          Get In Touch <span class="btn-arrow">→</span>
-        </a>
+          <div class="tl-cta">→ read the case study</div>
+        </div>
       </div>
+    </div>
+  </div>
+</section>
 
-    </div><!-- /proj-layout -->
-  </section>
+<!-- Case-study zoom overlays -->
+<div class="case-overlay" data-case="shopee">
+  <button class="case-close" data-close>← Close</button>
+  <div class="case-inner">
+    <div class="case-eyebrow">Case Study — Sea / Shopee</div>
+    <h2>Turning marketing chaos into a 98%-accurate agent</h2>
+    <div class="case-meta">Applied AI Agent Engineer · 2025</div>
+    <div class="case-block">
+      <div class="cb-label">The situation</div>
+      <p>Shopee's marketing operations were drowning in manual work: <strong>11 MKT datasets</strong> to reconcile by hand, spike-day queries piling up, and policy checks needed across <strong>5 campaign types and 11 shipping channels</strong> before any campaign could safely go live.</p>
+    </div>
+    <div class="case-block">
+      <div class="cb-label">What I built</div>
+      <p>A dual-track agent workflow that decomposes business intent and verifies live schema in parallel, plus a single-track agent for spike-day queries, an automation pipeline wired into Jira, and an evaluation pipeline built on Playwright.</p>
+      <div class="case-metrics">
+        <span>98% accuracy</span><span>−50% request volume</span><span>~25 hrs/week saved</span><span>~23 hrs/bi-week saved</span><span>9 teams adopted</span><span>~40 engineer-days saved</span>
+      </div>
+    </div>
+    <div class="case-block case-gained">
+      <div class="cb-label">What I gained</div>
+      <p>How to translate an ambiguous business ask into a verifiable agent architecture — and that shipping the agent is the easy half. The hard half is getting nine different teams to actually trust it enough to adopt it, which is why I wrote the playbooks, not just the code.</p>
+    </div>
+  </div>
+</div>
 
+<div class="case-overlay" data-case="gatherease">
+  <button class="case-close" data-close>← Close</button>
+  <div class="case-inner">
+    <div class="case-eyebrow">Case Study — GatherEase AI</div>
+    <h2>Being the only line between a client and a working product</h2>
+    <div class="case-meta">Co-Founder, Front-End Engineer &amp; Operations · 2024</div>
+    <div class="case-block">
+      <div class="cb-label">The situation</div>
+      <p>A B2B event-management startup with one shot at a first client — no fallback team, no existing playbook. I owned the client-facing operational workflow end to end, from business model definition through first delivery.</p>
+    </div>
+    <div class="case-block">
+      <div class="cb-label">What I built</div>
+      <p>I led the first-client market entry strategy, then designed and shipped the entire front end solo — Figma UX/UI straight into React — translating a client's raw needs into a working interface under real deadline pressure.</p>
+      <div class="case-metrics">
+        <span>−1 hr operational latency</span><span>−50% recruitment cost</span><span>solo Figma → React build</span>
+      </div>
+    </div>
+    <div class="case-block case-gained">
+      <div class="cb-label">What I gained</div>
+      <p>What it feels like when there's no one else to catch a dropped requirement. That pressure taught me to scope fast and correctly the first time — a habit that's shaped every agent I've shipped since.</p>
+    </div>
+  </div>
+</div>
 
-  <!-- ── Scripts ── -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <script src="projects/js/main.js"></script>
+<div class="case-overlay" data-case="piccollage">
+  <button class="case-close" data-close>← Close</button>
+  <div class="case-inner">
+    <div class="case-eyebrow">Case Study — PicCollage</div>
+    <h2>Learning that a "small" bug is a business signal</h2>
+    <div class="case-meta">Quality Assurance Intern · 2023</div>
+    <div class="case-block">
+      <div class="cb-label">The situation</div>
+      <p>A product with <strong>200M+ users</strong>, where growth and stability were both non-negotiable — and where the gap between "annoying" and "churn-causing" friction is often invisible until you go looking for it.</p>
+    </div>
+    <div class="case-block">
+      <div class="cb-label">What I built</div>
+      <p>I ran structured A/B tests across 150+ UX friction points, partnering directly with PM, SWE, and design to decide which fixes actually moved performance and growth KPIs.</p>
+      <div class="case-metrics">
+        <span>150+ friction points tested</span><span>200M+ user base</span><span>cross-functional triage</span>
+      </div>
+    </div>
+    <div class="case-block case-gained">
+      <div class="cb-label">What I gained</div>
+      <p>Triage is a judgment call, not a checklist. At that scale, deciding which friction point is worth fixing this sprint is the same muscle as deciding which agent is worth building — you're always trading a small signal against its compounding cost.</p>
+    </div>
+  </div>
+</div>
+
+<div class="case-overlay" data-case="unsw">
+  <button class="case-close" data-close>← Close</button>
+  <div class="case-inner">
+    <div class="case-eyebrow">Case Study — UNSW</div>
+    <h2>The first time I had to scope someone else's ambiguity</h2>
+    <div class="case-meta">Student Consultant · 2021</div>
+    <div class="case-block">
+      <div class="cb-label">The situation</div>
+      <p>Four real external clients — the Australian Maritime Museum, Kua, the Australian International Sports Organisation, and Grant Thornton — each with a vague ask and no corporate safety net if I got the scope wrong.</p>
+    </div>
+    <div class="case-block">
+      <div class="cb-label">What I built</div>
+      <p>Directed market research across 20+ schools for the Maritime Museum, formulated a 3-lever growth strategy for Kua, ran SEO and 3,000+ survey research with frontend optimization for the sports org, and delivered Grant Thornton's ESG risk matrix and procurement methodology.</p>
+      <div class="case-metrics">
+        <span>4 external clients</span><span>20+ school survey</span><span>3,000+ survey responses</span><span>1st place, Grant Thornton case comp.</span>
+      </div>
+    </div>
+    <div class="case-block case-gained">
+      <div class="cb-label">What I gained</div>
+      <p>This is where the muscle started: turning a client's vague ask into a scoped, deliverable plan. Everything I've built since — the Shopee agents, the GatherEase product — is that same muscle, just with more code attached.</p>
+    </div>
+  </div>
+</div>
+
+<section class="projects" id="projects">
+  <div class="wrap">
+    <div class="chapter-num reveal-el">Chapter Four — What I Shipped</div>
+    <h2 class="reveal-el" style="font-family:var(--display); font-weight:400; font-size:clamp(28px,3.6vw,42px); margin:0 0 40px; letter-spacing:-0.015em; max-width:640px;">Code as evidence, not the pitch.</h2>
+
+    <div class="proj-toggle">
+      <button class="active" data-filter="business">Business</button>
+      <button data-filter="fun">Side Projects</button>
+    </div>
+
+    <div class="pgrid" data-grid="business">
+      <a class="proj-card tilt reveal-el" href="https://github.com/SallyyLan/cuz_ShippingAudit_automation_pipeline" target="_blank" rel="noopener">
+        <span class="pe">📦</span><span class="arrow">↗</span>
+        <h3>ShipAudit — Shopee Automation Pipeline</h3>
+        <p>Verifies shipping-promotion tickets against baseline spreadsheets before campaigns go live — rebuilt over four iterations into a deterministic Python engine, fronted by a Claude Code agent.</p>
+        <div class="proj-tags"><span>Python</span><span>Rules Engine</span><span>Claude Code Agent</span></div>
+      </a>
+      <a class="proj-card tilt reveal-el" href="https://github.com/SallyyLan/agent-context-architecture-dual_track" target="_blank" rel="noopener">
+        <span class="pe">🧩</span><span class="arrow">↗</span>
+        <h3>Agent Context Architecture</h3>
+        <p>The reasoning architecture behind the Shopee self-serve agent — a dual-track protocol that decomposes business intent and verifies live schema in parallel.</p>
+        <div class="proj-tags"><span>Agent Design</span><span>Dual-Track Protocol</span><span>Schema Verification</span></div>
+      </a>
+      <a class="proj-card tilt reveal-el" href="https://github.com/SallyyLan/recruiting_candidate_research_agent" target="_blank" rel="noopener">
+        <span class="pe">🕵️</span><span class="arrow">↗</span>
+        <h3>Recruiting Candidate Research Agent</h3>
+        <p>Self-directs tool use (web search, URL fetch) to turn a candidate list into schema-validated, client-ready briefings, flagging low-confidence data.</p>
+        <div class="proj-tags"><span>AI Agents</span><span>Tool Use</span><span>Schema Validation</span></div>
+      </a>
+      <a class="proj-card tilt reveal-el" href="https://github.com/SallyyLan/Google-Review-Analyzer" target="_blank" rel="noopener">
+        <span class="pe">📊</span><span class="arrow">↗</span>
+        <h3>Google Reviews Analyzer</h3>
+        <p>An async Flask + LLM web app that analyzes reviews into sentiment and thematic dashboards, prioritizing actionable insights for SMB decision-making.</p>
+        <div class="proj-tags"><span>Flask</span><span>LLM</span><span>Sentiment Analysis</span></div>
+      </a>
+    </div>
+
+    <div class="pgrid hidden-grid" data-grid="fun">
+      <a class="proj-card tilt reveal-el" href="https://github.com/SallyyLan/AI_Agent_NewsUpdater" target="_blank" rel="noopener">
+        <span class="pe">🤖</span><span class="arrow">↗</span>
+        <h3>AI Agent News Updater</h3>
+        <p>Claude Code agents that automate an AI news pipeline: ingestion, scoring, summarization, and email delivery.</p>
+        <div class="proj-tags"><span>Claude Code Agents</span><span>RSS</span><span>GitHub Actions</span></div>
+      </a>
+      <a class="proj-card tilt reveal-el" href="#">
+        <span class="pe">📝</span><span class="arrow">↗</span>
+        <h3>Last Min Exam Prep — Hackathon Award 🎖️</h3>
+        <p>Turns a student's past exams and homework into a prioritized practice exam, so last-minute revision focuses on what's likely to matter.</p>
+        <div class="proj-tags"><span>React</span><span>FastAPI</span><span>HuggingFace</span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="skills">
+  <div class="wrap">
+    <div class="chapter-num reveal-el">Instruments</div>
+    <div class="chiprow reveal-el">
+      <span class="chip">Python</span><span class="chip">TypeScript</span><span class="chip">React</span><span class="chip">Node.js</span>
+      <span class="chip">SQL / PrestoSQL</span><span class="chip">AWS · Azure · GCP</span><span class="chip">Docker</span>
+      <span class="chip">Claude Code / Coworker</span><span class="chip">RAG</span><span class="chip">Prompt &amp; context engineering</span>
+      <span class="chip">Jira REST API</span><span class="chip">Playwright</span>
+    </div>
+  </div>
+</section>
+
+<div class="close">
+  <div class="wrap">
+    <h2 class="reveal-el">Tell me the problem<br>no one's scoped yet.</h2>
+    <div class="foot-primary">
+      <a href="https://linkedin.com/in/sallylan" target="_blank" rel="noopener">LinkedIn ↗</a>
+      <a href="https://sallyylan.github.io/portfolio/" target="_blank" rel="noopener">GitHub ↗</a>
+    </div>
+    <div class="foot-meta">© 2026 Sally Lan</div>
+  </div>
+</div>
+
+<script src="projects/js/main.js"></script>
 </body>
 </html>

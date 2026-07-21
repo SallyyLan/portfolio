@@ -63,6 +63,12 @@ nav .wrap{display:flex; justify-content:space-between; align-items:center;}
   opacity:0; transform:translateY(16px); transition:opacity .9s ease .22s, transform .9s ease .22s;}
 .chapter p.in-view{opacity:1; transform:translateY(0);}
 .chapter p strong{color:var(--ink); font-weight:600; font-family:var(--sans);}
+.chapter-list{list-style:none; margin:0 0 26px; padding:0; display:flex; flex-direction:column; gap:14px; max-width:640px;
+  opacity:0; transform:translateY(16px); transition:opacity .9s ease .16s, transform .9s ease .16s;}
+.chapter-list.in-view{opacity:1; transform:translateY(0);}
+.chapter-list li{font-family:var(--display); font-size:18px; line-height:1.6; color:var(--ink-dim); padding-left:22px; position:relative;}
+.chapter-list li::before{content:""; position:absolute; left:0; top:11px; width:7px; height:7px; border-radius:50%; background:var(--accent);}
+.chapter-sub{font-family:var(--mono); font-size:12px; letter-spacing:0.02em; color:var(--ink-faint); margin-top:8px;}
 
 .rule{height:1px; background:var(--line); width:100%; margin:0 auto; position:relative; z-index:2;}
 
@@ -99,8 +105,14 @@ nav .wrap{display:flex; justify-content:space-between; align-items:center;}
 .tl-company{font-family:var(--display); font-size:21px; letter-spacing:-0.01em;}
 .tl-role{font-family:var(--mono); font-size:12px; color:var(--ink-faint); margin:6px 0 18px; letter-spacing:0.02em;}
 .tl-desc{font-family:var(--display); font-size:15.5px; line-height:1.75; color:var(--ink-dim); margin:0 0 18px; max-width:580px;}
+.tl-seg{margin-bottom:16px;}
+.tl-seg-label{font-family:var(--mono); font-size:10.5px; text-transform:uppercase; letter-spacing:0.09em; color:var(--ink-faint); margin-bottom:6px;}
+.tl-seg p{font-family:var(--display); font-size:15.5px; line-height:1.7; color:var(--ink-dim); margin:0; max-width:580px;}
+.tl-seg.tl-built .tl-seg-label{color:var(--accent);}
+.tl-seg.tl-built p{color:var(--ink);}
 .tl-tags, .client-list{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:16px;}
 .tl-tags span, .client-tag{font-family:var(--mono); font-size:11px; padding:6px 12px; border-radius:100px; border:1px solid var(--line); color:var(--ink-faint);}
+.client-tag{font-size:12px; padding:8px 14px; border-color:var(--accent); color:var(--ink);}
 .tl-cta{font-family:var(--mono); font-size:11.5px; color:var(--accent); letter-spacing:0.03em;}
 
 /* case-study zoom overlay */

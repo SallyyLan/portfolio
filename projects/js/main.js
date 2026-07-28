@@ -9,7 +9,7 @@ document.addEventListener('scroll', onScroll, {passive:true});
 
 /* reveal on scroll (blur, chapters, cards, experience cards) */
 var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-var els = document.querySelectorAll('.reveal-el, .blur-reveal, .chapter-num, .chapter h2, .chapter p, .pcard, .tl-card');
+var els = document.querySelectorAll('.reveal-el, .blur-reveal, .chapter-num, .chapter h2, .chapter p, .pcard, .exp-row');
 if(reduced){
   els.forEach(function(el){ el.classList.add('in-view'); });
 } else {
@@ -43,39 +43,17 @@ function animateCount(el){
   requestAnimationFrame(tick);
 }
 
-/* experience-card zoom-into-case-study */
-function openCase(card, keyOverride){
-  var key = keyOverride || card.dataset.case;
-  var overlay = document.querySelector('.case-overlay[data-case="' + key + '"]');
-  if(!overlay) return;
-  var r = card.getBoundingClientRect();
-  overlay.style.setProperty('--ox', (r.left + r.width/2) + 'px');
-  overlay.style.setProperty('--oy', (r.top + r.height/2) + 'px');
-  requestAnimationFrame(function(){
-    requestAnimationFrame(function(){ overlay.classList.add('open'); });
-  });
-  document.body.style.overflow = 'hidden';
-  overlay.setAttribute('aria-hidden', 'false');
-}
-function closeCase(overlay){
-  overlay.classList.remove('open');
-  document.body.style.overflow = '';
-  overlay.setAttribute('aria-hidden', 'true');
-}
-document.querySelectorAll('.tl-card').forEach(function(card){
-  card.addEventListener('click', function(){ openCase(card); });
-  card.addEventListener('keydown', function(e){
-    if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); openCase(card); }
-  });
-});
-document.querySelectorAll('.case-close').forEach(function(btn){
-  btn.addEventListener('click', function(){ closeCase(btn.closest('.case-overlay')); });
-});
-document.addEventListener('keydown', function(e){
-  if(e.key === 'Escape'){
-    var open = document.querySelector('.case-overlay.open');
-    if(open) closeCase(open);
+/* experience accordion — click a row to drop down its evidence */
+document.querySelectorAll('[data-row]').forEach(function(row){
+  var head = row.querySelector('[data-head]');
+  function toggle(){
+    var open = row.classList.toggle('open');
+    head.setAttribute('aria-expanded', open ? 'true' : 'false');
   }
+  head.addEventListener('click', toggle);
+  head.addEventListener('keydown', function(e){
+    if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
+  });
 });
 
 /* headline decode / scramble-in on load */
